@@ -28,7 +28,7 @@ nav:
 # - On this tutorial:  why_this_tutorial.md
 - A Hands-On Guide:
 # - Parsing Wikitext with Python: 
-  - index.md
+  - README.md
   - Fetching XML:
     - Fetching XML data/index.md
     - Special Export tool: Fetching XML data/Special Exports.md
