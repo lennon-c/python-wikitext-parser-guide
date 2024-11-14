@@ -6,12 +6,12 @@ In this tutorial, we will explore how to parse *wikitext* from beginning to end 
 
 ## What?
 
-- We will begin by fetching the data, which is detailed in [Fetching XML data](Fetching XML data/index.md). The data is retrieved in XML format and includes two methods: 
-    * First, we will retrieve *wikitext* online using the Wiki [Special Export tool](Fetching XML data/Special Exports.md) via the `requests` package. 
-    * Next, we will locate and download the Wiki [Dump File](Fetching XML data/Dump files.md). 
-- Then, using the `lxml` package, we will parse the XML data obtained from both **Special Export** [here](Parsing XML/Parsing XML from Special Export.md) and **Dump files** [here](Parsing XML/Parsing XML from Dump file.md) to extract the *wikitext* content.
+- We will begin by fetching the data, which is detailed in [Fetching XML data](https://lennon-c.github.io/python-wikitext-parser-guide/Fetching%20XML%20data/). The data is retrieved in XML format and includes two methods: 
+    * First, we will retrieve *wikitext* online using the Wiki [Special Export tool](https://lennon-c.github.io/python-wikitext-parser-guide/Fetching%20XML%20data/Special%20Exports/) via the `requests` package. 
+    * Next, we will locate and download the Wiki [Dump File](https://lennon-c.github.io/python-wikitext-parser-guide/Fetching%20XML%20data/Dump%20files/). 
+- Then, using the `lxml` package, we will parse the XML data obtained from both **Special Export** [here](https://lennon-c.github.io/python-wikitext-parser-guide/Parsing%20XML/Parsing%20XML%20from%20Special%20Export/) and **Dump files** [here](https://lennon-c.github.io/python-wikitext-parser-guide/Parsing%20XML/Parsing%20XML%20from%20Dump%20file/) to extract the *wikitext* content.
 
-- In the final part of this tutorial, we will parse the *wikitext* itself. After reviewing key Wiki concepts and *wikitext* syntax in [Wiki Basics](Parsing Wikitext/Wiki Basics.md), we will use `mwparserfromhell` and some regular expressions to extract elements such as headings, sections, parts of speech, declensions, meanings, and more in [Parsing Wikitext](Parsing Wikitext/Parsing Wikitext.md).
+- In the final part of this tutorial, we will parse the *wikitext* itself. After reviewing key Wiki concepts and *wikitext* syntax in [Wiki Basics](https://lennon-c.github.io/python-wikitext-parser-guide/Parsing%20Wikitext/Wiki%20Basics/), we will use `mwparserfromhell` and some regular expressions to extract elements such as headings, sections, parts of speech, declensions, meanings, and more in [Parsing Wikitext](https://lennon-c.github.io/python-wikitext-parser-guide/Parsing%20Wikitext/Parsing%20Wikitext/).
 
 ### Requirements to follow along   
 To follow along with this tutorial, you will need to have the following Python packages installed:
@@ -26,7 +26,7 @@ If you do not have these installed, you can install them by running the followin
 pip install requests lxml mwparserfromhell
 ```
 
-You can now start with the hands-on tutorial right away or continue reading below (optional)! 
+You can now start with the [hands-on tutorial](https://lennon-c.github.io/python-wikitext-parser-guide/Fetching%20XML%20data/) right away or continue reading below (optional)! 
 
 ## Why?
 
