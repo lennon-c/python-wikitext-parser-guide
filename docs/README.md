@@ -1,6 +1,4 @@
----
-title: "A Hands-On Guide to Parsing Wikitext with Python"
----
+# A Hands-On Guide to Parsing Wikitext with Python
 
 In this tutorial, we will explore how to parse *wikitext* from beginning to end using **Python**. We will cover each step—from fetching data and parsing XML, to directly handling *wikitext* and extracting content like templates, headings, and sections. Throughout the tutorial, we will use the German [Wiktionary](https://de.wiktionary.org/wiki/Haus) as our example. 
 

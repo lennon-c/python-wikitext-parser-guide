@@ -1,5 +1,5 @@
 site_name: Parsing Wikitext with Python
-repo_url: https://github.com/lennon-c/de_wiktio
+repo_url: python-wikitext-parser-guide
 theme:
   name: "material"
   palette:
