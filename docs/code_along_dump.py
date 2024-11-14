@@ -1,5 +1,7 @@
-import lxml.etree as ET
-from pathlib import Path
+import requests
+title = 'schön'
+url = f'https://raw.githubusercontent.com/lennon-c/python-wikitext-parser-guide/refs/heads/main/docs/data/{title}.txt'
+resp = requests.get(url)
+wikitext = resp.text
 
-XML_FILE = Path(r'D:\Dropbox\Python\My_packages\de_wiktio\data\dewiktionary-20241020-pages-articles-multistream.xml')
-DICT_PATH = Path(r"D:\Dropbox\Python\My_packages\de_wiktio\out")
+print(wikitext[:500])

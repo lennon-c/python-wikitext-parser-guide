@@ -13,7 +13,6 @@ python = "^3.11"
 requests = "^2.32.3"
 lxml = "^5.3.0"
 mwparserfromhell = "^0.6.6"
-de-wiktio = {path = "D:/Dropbox/Python/My_packages/de_wiktio"}
  
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"

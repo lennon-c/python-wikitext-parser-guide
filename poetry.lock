@@ -290,25 +290,6 @@ traitlets = ">=4"
 test = ["pytest"]
 
 [[package]]
-name = "de-wiktio"
-version = "0.1.0"
-description = ""
-optional = false
-python-versions = "^3.11"
-files = []
-develop = false
-
-[package.dependencies]
-lxml = "^5.3.0"
-mwparserfromhell = "^0.6.6"
-python-frontmatter = "^1.1.0"
-requests = "^2.32.3"
-
-[package.source]
-type = "directory"
-url = "../de_wiktio"
-
-[[package]]
 name = "debugpy"
 version = "1.8.8"
 description = "An implementation of the Debug Adapter Protocol for Python"
@@ -1319,24 +1300,6 @@ files = [
 six = ">=1.5"
 
 [[package]]
-name = "python-frontmatter"
-version = "1.1.0"
-description = "Parse and manage posts with YAML (or other) frontmatter"
-optional = false
-python-versions = "*"
-files = [
-    {file = "python-frontmatter-1.1.0.tar.gz", hash = "sha256:7118d2bd56af9149625745c58c9b51fb67e8d1294a0c76796dafdc72c36e5f6d"},
-    {file = "python_frontmatter-1.1.0-py3-none-any.whl", hash = "sha256:335465556358d9d0e6c98bbeb69b1c969f2a4a21360587b9873bfc3b213407c1"},
-]
-
-[package.dependencies]
-PyYAML = "*"
-
-[package.extras]
-docs = ["sphinx"]
-test = ["mypy", "pyaml", "pytest", "toml", "types-PyYAML", "types-toml"]
-
-[[package]]
 name = "pywin32"
 version = "308"
 description = "Python for Window Extensions"
@@ -1833,4 +1796,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "879a27d52a0c057c26d18098d4ddbd7b71fa8f5dc9f499bf9a076b9439629d6a"
+content-hash = "04a41f25f42a8b0e42cda44ed29b4be0a0f94f982c36f9536621434f62676d07"

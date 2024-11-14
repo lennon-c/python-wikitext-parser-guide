@@ -7,11 +7,20 @@ We already know how to extract *wikitext* from dump files and the special export
 We will use the word `stark` as an example ([link to the wiktionary page](https://de.wiktionary.org/wiki/stark)). We will retrieve the *wikitext* for the page `stark` from my GitHub repository so that we have the same version of the page. However, you can use either of the two methods we have learned so far to retrieve the *wikitext*. 
 
 
-
-```python exec="1" source="tabbed-left" result="pycon" session="wiki"
+<!-- ```python exec="1" source="tabbed-left" result="pycon" session="wiki"
 from de_wiktio.fetch import PageExport
 
 wikitext = PageExport('stark').wikitext 
+print(wikitext[:500])
+``` -->
+
+```python exec="1" source="tabbed-left" result="pycon" session="wiki"
+import requests
+title = 'stark'
+url = f'https://raw.githubusercontent.com/lennon-c/python-wikitext-parser-guide/refs/heads/main/docs/data/{title}.txt'
+resp = requests.get(url)
+wikitext = resp.text
+
 print(wikitext[:500])
 ```
 
