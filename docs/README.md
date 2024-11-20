@@ -47,7 +47,6 @@ That being said, parsing *wikitext* does come with its own challenges:
 
 - **Differences from the live web page**: The *wikitext* content you parse is not always identical to what you see on the live web page.
 
-
 ## The Story Behind This Tutorial
 
 Last year, I set up a system of flashcards for learning German, which involved scraping German Wiktionary pages to retrieve word inflections using BeautifulSoup. My code worked well initially, but by the time I wanted to use it again, it was broken because the website layout had changed. So, I fixed the code, but when the layout changed again, I realized that web scraping was not the best approach for the task at hand.
