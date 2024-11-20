@@ -1,0 +1,204 @@
+{{Siehe auch|[[Arbeiten]]}}
+{{Wort der Woche|24|2007}}
+== arbeiten ({{Sprache|Deutsch}}) ==
+=== {{Wortart|Verb|Deutsch}} ===
+
+{{Deutsch Verb Übersicht
+|Präsens_ich=arbeite
+|Präsens_du=arbeitest
+|Präsens_er, sie, es=arbeitet
+|Präteritum_ich=arbeitete
+|Partizip II=gearbeitet
+|Konjunktiv II_ich=arbeitete
+|Imperativ Singular=arbeite
+|Imperativ Plural=arbeitet
+|Hilfsverb=haben
+|Bild 1=Velden Christkindlmarkt Schmied Demo 16122007 21.jpg|mini|1|Der Schmied ''arbeitet''.
+|Bild 2=Street Craftsman in Olinda.jpg|mini|1|Ein [[Handwerker]] ''arbeitet'' auf der [[Straße]].
+|Bild 3=Flens Flaschenbefüllung.jpg|mini|2|Die Flaschenbefüllung ''arbeitet'' wieder.
+|Bild 4=16 inch wide oak flooring.jpeg|mini|4|Fugen entstehen, wenn das Holz ''arbeitet''.}}
+
+{{Worttrennung}}
+:ar·bei·ten, {{Prät.}} ar·bei·te·te, {{Part.}} ge·ar·bei·tet
+
+{{Aussprache}}
+:{{IPA}} {{Lautschrift|ˈaʁbaɪ̯tn̩}}
+:{{Hörbeispiele}} {{Audio|De-arbeiten.ogg}}, {{Audio|De-arbeiten2.ogg}}, {{Audio|De-at-arbeiten.ogg|spr=at}}
+
+{{Bedeutungen}}
+*{{K|intrans.}}
+:[1] geistig oder körperlich [[tätig]] sein, zielstrebig handeln, um so ein Ergebnis zu erzielen
+:[2] in [[Betrieb]] sein, zum Beispiel einer [[Maschine]] oder [[Anlage]]
+:[3] {{K|unpersönlich}} gedanklich [[beschäftigen]], ein [[innen|innerer]] mit Gefühlen verbundender [[Prozess]]
+:[4] {{K|unpersönlich}} Holz oder anderes Material: sich im Wechsel von [[Temperatur]] und [[Feuchtigkeit]] [[verformen]]
+:[5] in einem Beschäftigungsverhältnis stehen, erwerbstätig sein
+
+{{Herkunft}}
+:von [[mittelhochdeutsch]] ''{{Ü|gmh|arebeiten}}, {{Ü|gmh|arbeiten}},'' [[althochdeutsch]] ''{{Ü|goh|arabeiten}}, {{Ü|goh|arbeiten}}'' „(sich) plagen, angestrengt tätig sein“<ref>{{Lit-Duden: Universalwörterbuch|A=8}}, Seite 175, Eintrag „arbeiten“.</ref>
+
+{{Synonyme}}
+:[1] [[ackern]], [[barabern]], [[handeln]], [[hackeln]], [[malochen]], [[rabotten]], [[rackern]], [[schaffen]], [[schuften]], [sich] [[betätigen]], [[werkeln]], [[werken]], [[wirken]]
+:[2] [[funktionieren]], [[gehen]], [[laufen]], [[funzen]]
+:[3] [[gären]], [[rumoren]]
+
+{{Sinnverwandte Wörter}}
+:[1] [[ausüben]]
+:[4] sich [[werfen]]
+
+{{Gegenwörter}}
+:[1] [[erholen]], [[faulenzen]], [[ruhen]]
+:[2] [[defekt]] sein, [[kaputt]] sein, [[ausstellen|ausgestellt sein]], [[abstellen|abgestellt sein]]
+
+{{Oberbegriffe}}
+:[1] [[tätig]] sein
+:[2] [[im Gange sein]]
+
+{{Unterbegriffe}}
+:[1] [[abarbeiten]], [[anarbeiten]], [[aufarbeiten]], [[ausarbeiten]], [[bearbeiten]], [[drauflosarbeiten]], [[durcharbeiten]], [[einarbeiten]], [[emporarbeiten]], [[entgegenarbeiten]], [[erarbeiten]], [[gegenarbeiten]], [[handarbeiten]], [[heranarbeiten]], [[heraufarbeiten]], [[herausarbeiten]], [[hinanarbeiten]], [[hinarbeiten]], [[hinaufarbeiten]], [[hindurcharbeiten]], [[hineinarbeiten]], [[hocharbeiten]], [[kaputtarbeiten]], [[kurzarbeiten]], [[losarbeiten]], [[mitarbeiten]], [[nacharbeiten]], [[schwarzarbeiten]], [[totarbeiten]], [[überarbeiten]], [[umarbeiten]], [[verarbeiten]], [[vorarbeiten]], [[wegarbeiten]], [[weiterarbeiten]], [[zuarbeiten]], [[zusammenarbeiten]]
+
+{{Beispiele}}
+:[1] Wir ''arbeiten'' gemeinsam an einem Wörterbuch.
+:[1] „Der Vater ''arbeitete'' in einer Kleiderfabrik und betrieb zu Hause mit seiner Frau in der Wohnung eine Schneiderei.“<ref>{{Per-Cicero | Autor=Beat Wyss | Titel=ALICE war ihr Name, KIKI ihre Maske, Schönheit ihr Schicksal | Nummer=3 | Monat=03 | Jahr=2019 | Seiten=111. }}</ref>
+:[1] Er ''arbeitet'' als Lektor in einem bekannten Verlag.
+:[1] Was macht das Studium? Ich ''arbeite'' daran.
+:[1] Was macht die Reparatur? Wir ''arbeiten'' mit Hochdruck an der Hauptleitung.
+:[2] Seit der Reparatur ''arbeitet'' die Maschine ohne Unterbrechung.
+:[2] Die Anlage ''arbeitet'' wieder vorschriftsmäßig und im Takt.
+:[3] Viele Schmähungen musste er ertragen, fortan ''arbeitete'' es in seinem Herzen.
+:[3] Die Erlebnisse von gestern Abend ''arbeiten'' noch immer in mir, ich kann mich gar nicht auf die Arbeit konzentrieren.
+:[4] „Was ist der Unterschied zwischen einem Beamten und einem Stück Holz?“ – „Holz ''arbeitet!''“
+:[4] Vergiss nicht die Fuge am Rand zu lassen, mindestens 2 cm, damit das Holz ''arbeiten'' kann!
+:[5] Ab Montag ''arbeite'' ich Teilzeit.
+
+{{Redewendungen}}
+:[[arbeiten wie ein Pferd|''arbeiten'' wie ein Pferd]], [[arbeiten wie ein Ochse|''arbeiten'' wie ein Ochse]], [[Hand in Hand arbeiten|Hand in Hand ''arbeiten'']],
+
+{{Sprichwörter}}
+:[[wer nicht arbeitet, soll auch nicht essen|Wer nicht ''arbeitet'', soll auch nicht essen.]]
+
+{{Charakteristische Wortkombinationen}}
+:[1] [[an]] etwas (''Dativ'') ''arbeiten,'' [[als]] etwas (''Beruf'') arbeiten, [[wie]] +''Adjektiv'' arbeiten (zum Beispiel wie [[verrückt]] ''arbeiten''), [[in]] einem Ort arbeiten, als [[Angestellte]] ''arbeiten,'' [[effizient]] ''arbeiten,'' [[ehrenamtlich]] ''arbeiten,'' [[eng]] [[zusammen]] ''arbeiten,'' [[exakt]] ''arbeiten,'' [[hart]] ''arbeiten,'' mit [[Hochdruck]] ''arbeiten,'' [[kontraproduktiv]] ''arbeiten,'' [[kostendeckend]] ''arbeiten,'' [[lang|länger]] ''arbeiten,'' [[langsam]] ''arbeiten,'' [[nebenberuflich]] ''arbeiten,'' [[präzise]] ''arbeiten,'' [[produktiv]] ''arbeiten,'' [[profitabel]] ''arbeiten,'' [[schnell]] ''arbeiten,'' [[tatkräftig]] ''arbeiten,'' [[Teilzeit]] ''arbeiten,'' [[viel]] ''arbeiten'', [[wenig]] ''arbeiten'', [[wissenschaftlich]] ''arbeiten''
+:[2] etwas ''arbeitet'' [[rund]], [[vorschriftsmäßig]], [[einwandfrei]], [[fehlerlos]], [[rund um die Uhr]]
+:[3] etwas, »es« ''arbeitet'' in einem
+
+{{Wortfamilie}}
+:[[Arbeit]], [[Arbeiter]], [[Hand-in-Hand-Arbeiten]]
+
+==== {{Übersetzungen}} ====
+{{Ü-Tabelle|1|G=geistig oder körperlich tätig sein, zielstrebig handeln|Ü-Liste=
+*{{eu}}: lan {{Ü|eu|egin}}
+*{{bg}}: {{Üt|bg|работя|rabotja}}
+*{{zh}}: {{Üt|zh|工作|gōngzuò}}
+*{{da}}: {{Ü|da|arbejde}}
+*{{en}}: {{Ü|en|work}}
+*{{eo}}: {{Ü|eo|labori}}
+*{{et}}: {{Ü|et|töötama}}
+*{{fo}}: {{Ü|fo|arbeiða}}
+*{{fi}}: {{Ü|fi|työskennellä}}, {{Ü|fi|tehdä työtä}}
+*{{fr}}: {{Ü|fr|travailler}}
+*{{gl}}: {{Ü|gl|traballar}}
+*{{el}}: {{Üt|el|δουλεύω|doulévo}}, {{Üt|el|εργάζομαι|ergázome}}
+*{{id}}: {{Ü|id|kerja}}
+*{{ia}}: {{Ü|ia|laborar}}
+*{{is}}: {{Ü|is|vinna}}
+*{{it}}: {{Ü|it|lavorare}}
+*{{ja}}: {{Üt|ja|働く|はたらく, hataraku}}, {{Üt|ja|務める|つとめる, tsutomeru}}, {{Üt|ja|勤める|つとめる, tsutomeru}}
+*{{ca}}: {{Ü|ca|treballar}}
+*{{tlh}}: {{Ü|tlh|vum}}
+*{{ko}}: {{Üt|ko|일하다|il-ha-da}}
+*{{ku}}:
+**{{kmr}}: {{Ü|kmr|kar kirin}}, {{Ü|kmr|xebitîn}}
+*{{la}}: {{Ü|la|laborare|laborāre}}
+*{{lt}}: {{Ü|lt|dirbti}}
+*{{lb}}: {{Ü|lb|schaffen}}
+*{{nl}}: {{Ü|nl|werken}}
+*{{no}}: {{Ü|no|arbeide}}
+*{{oc}}: {{Ü|oc|trabalhar}}
+*{{fa}}:
+**Farsi, {{prs|DMG}}: {{Üxx4|fa|کار کردن|d=kār kardän|DMG=0}}
+*{{pl}}: {{Ü|pl|pracować}}
+*{{pt}}: {{Ü|pt|trabalhar}}
+*{{ru}}: {{Üt|ru|работать}}, {{Üt|ru|трудиться}}
+*{{sv}}: {{Ü|sv|jobba}}, {{Ü|sv|arbeta}}
+*{{sk}}: {{Ü|sk|pracovať}}
+*{{es}}: {{Ü|es|trabajar}}
+*{{th}}: {{Üt|th|ทำงาน|tam ngaan}}
+*{{cs}}: {{Ü|cs|pracovat}}
+*{{tr}}: {{Ü|tr|çalışmak}}
+*{{uk}}: {{Üt|uk|працювати}}
+*{{hu}}: {{Ü|hu|dolgozik}}
+*{{ur}}: {{Üt|ur|کام کرنا|}}
+*{{be}}: {{Üt|be|працаваць|}}
+|Dialekttabelle=
+*Alemannisch: schaffe
+*Bairisch: arwadn/arweddn/oaweddn; [[ruacheln]]
+*Kölsch: [[arbigge]]
+*Tirolerisch: orbeita
+*Österreichisch: [[hackln]], [[ruacheln]]
+*Schwäbisch: [[schaffa]]
+}}
+{{Ü-Tabelle|2|G=in Betrieb sein|Ü-Liste=
+*{{en}}: {{Ü|en|work}}, {{Ü|en|function}}
+*{{el}}: {{Üt|el|δουλεύω|doulévo}}, {{Üt|el|εργάζομαι|ergázome}}, {{Üt|el|λειτουργώ|litourgó}}
+*{{ca}}: {{Ü|ca|funcionar}}
+*{{ku}}:
+**{{kmr}}: {{Ü|kmr|kar kirin}}, {{Ü|kmr|xebitîn}}
+*{{oc}}:  {{Ü|oc|foncionar}}
+*{{pl}}: {{Ü|pl|pracować}}
+*{{ru}}: {{Üt|ru|работать}}
+*{{sv}}: {{Ü|sv|arbeta}}, {{Ü|sv|fungera}}, {{Ü|sv|gå}}
+*{{hu}}: {{Ü|hu|működik}}
+|Dialekttabelle=
+*Alemannisch: schaffe
+*Bairisch: arwadn/arweddn/oaweddn; [[ruacheln]]
+*Kölsch: [[arbigge]]
+*Tirolerisch: orbeita
+*Österreichisch: [[hackln]], [[ruacheln]]
+*Schwäbisch: [[schaffa]]
+}}
+{{Ü-Tabelle|3|G=gedanklich beschäftigen|Ü-Liste=
+*{{pl}}: {{Ü|pl|pracować}}
+*{{hu}}: {{Ü|hu|megmunkál}}
+|Dialekttabelle=
+*Alemannisch: schaffe
+*Bairisch: arwadn/arweddn/oaweddn; [[ruacheln]]
+*Kölsch: [[arbigge]]
+*Tirolerisch: orbeita
+*Österreichisch: [[hackln]], [[ruacheln]]
+*Schwäbisch: [[schaffa]]
+}}
+{{Ü-Tabelle|4|G=sich im Wechsel von Temperatur und Feuchtigkeit verformen|Ü-Liste=
+*{{en}}: {{Ü|en|warp}}
+*{{sv}}: {{Ü|sv|röra sig}}, {{Ü|sv|slå sig}}
+|Dialekttabelle=
+*Alemannisch: schaffe
+*Bairisch: arwadn/arweddn/oaweddn; [[ruacheln]]
+*Kölsch: [[arbigge]]
+*Tirolerisch: orbeita
+*Österreichisch: [[hackln]], [[ruacheln]]
+*Schwäbisch: [[schaffa]]
+}}
+{{Ü-Tabelle|5|G=in einem Beschäftigungsverhältnis stehen, erwerbstätig sein|Ü-Liste=
+*{{en}}: {{Ü|en|employ|be employed}}, {{Ü|en|work}}
+*{{tlh}}: {{Ü|tlh|vum}}
+*{{pdt}}: {{Ü|pdt|schaufen}}
+|Dialekttabelle=
+*Alemannisch: schaffe
+*Bairisch: arwadn/arweddn/oaweddn; [[ruacheln]]
+*Kölsch: [[arbigge]]
+*Tirolerisch: orbeita
+*Österreichisch: [[hackln]], [[ruacheln]]
+*Schwäbisch: [[schaffa]]
+}}
+
+{{Referenzen}}
+:[1, 3] {{Ref-Grimm}}
+:[1, 2, 4] {{Ref-DWDS}}
+:[1–3, 5] {{Ref-Duden}}
+:[1–5] {{Ref-FreeDictionary}}
+:[*] {{Ref-UniLeipzig}}
+:[1] {{Wikipedia}}
+
+{{Quellen}}
+
+{{Ähnlichkeiten 1|[[Arbeiter]]|Anagramme=[[abreiten]], [[abrieten]], [[Anbieter]], [[anbriete]], [[anerbiet]], [[antreibe]], [[antriebe]], [[Antriebe]]}}
