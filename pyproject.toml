@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "python-wikitext-parser-guide"
+version = "0.1.0"
+description = ""
+license = "MIT"
+authors = ["Carolina Lennon <14179052+lennon-c@users.noreply.github.com>"]
+readme = "docs/README.md"
+repository = "https://github.com/lennon-c/python-wikitext-parser-guide"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.32.3"
+lxml = "^5.3.0"
+mwparserfromhell = "^0.6.6"
+ 
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+ipykernel = "^6.29.5"
+mkdocstrings-python = "^1.12.2"
+mkdocs = "^1.6.1"
+mkdocs-material = "^9.5.42"
+markdown-exec = {extras = ["ansi"], version = "^1.9.3"}
+mkdocs-open-in-new-tab = "^1.0.7"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

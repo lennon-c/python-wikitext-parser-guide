@@ -1,0 +1,83 @@
+site_name: Parsing Wikitext with Python
+repo_url: https://github.com/lennon-c/python-wikitext-parser-guide
+theme:
+  name: "material"
+  palette:
+    primary: yellow
+
+  features:
+    - content.code.copy
+    - content.tabs.link
+    - navigation.expand
+    # - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.footer
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - navigation.top
+    # - toc.integrate
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/lennon-c
+
+
+nav:
+# - On this tutorial:  why_this_tutorial.md
+- A Hands-On Guide:
+# - Parsing Wikitext with Python: 
+  - README.md
+  - Fetching XML:
+    - Fetching XML data/index.md
+    - Special Export tool: Fetching XML data/Special Exports.md
+    - Dump File: Fetching XML data/Dump files.md
+  - Parsing XML:
+    - Parsing XML/index.md
+    - From Special Export: Parsing XML/Parsing XML from Special Export.md
+    - From Dump file: Parsing XML/Parsing XML from Dump file.md
+  - Parsing Wikitext:
+    - Parsing Wikitext/index.md
+    - Wiki Basics: Parsing Wikitext/Wiki Basics.md
+    - Parsing Wikitext: Parsing Wikitext/Parsing Wikitext.md
+
+
+
+plugins:
+  - autorefs
+  - search
+  # - callouts # obsidian callout
+  - open-in-new-tab: 
+      add_icon: false
+  - markdown-exec
+
+markdown_extensions:
+- attr_list
+- md_in_html 
+- nl2br # obsidian callout
+# - wikilinks
+- admonition
+- pymdownx.details
+- pymdownx.superfences
+- pymdownx.betterem
+- pymdownx.tabbed:  
+# - pymdownx.blocks.tab:
+    alternate_style: true
+- toc:
+    title: On this page  
+    permalink: true 
+- pymdownx.emoji:
+    emoji_index: !!python/name:material.extensions.emoji.twemoji
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg
+- pymdownx.b64
+- pymdownx.highlight:
+    use_pygments: true
+    pygments_lang_class: true
+    auto_title: true
+    linenums: true
+    # anchor_linenums: true
+    # linenums_style: pymdownx-inline 
+- def_list
+- pymdownx.tasklist:
+    custom_checkbox: true 

@@ -1,0 +1,29 @@
+# MkDocs documentation
+/site/
+
+# Cache
+__pycache__/
+.pytest_cache/
+ 
+
+# editors
+.vscode/
+ 
+# Test
+/tests/
+
+# Python Built 
+/build/
+/dist/
+
+# temporary folders
+temp/
+analysis/
+docs/attachments
+docs/Sandbox.md
+pyodide.md
+ 
+# Data 
+/data/
+out/
+
