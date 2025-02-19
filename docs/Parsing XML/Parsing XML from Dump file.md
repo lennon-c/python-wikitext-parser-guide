@@ -1,13 +1,13 @@
 [TOC]
 
+## Importing Packages
+```python  
+from pathlib import Path 
+import lxml.etree as ET # to parse XML documents
+import pickle # to store the dictionary locally 
+```
 
-As in the previous section, we begin by importing the `lxml.etree` module:
-
-```python exec="true" source="above"   session="dump"
-import lxml.etree as ET
-``` 
-
-### Setting Up Paths
+## Setting Up Paths Local Machine
 
 To follow along in this section:
 
@@ -18,32 +18,18 @@ To follow along in this section:
     - Therefore, do not forget to specify in which folder the dictionary should be saved in `DICT_PATH`.
 
 ```python  
-from pathlib import Path
-
 # Specify your own paths
 XML_FILE = Path(r'path\to\xml\dewiktionary-20241020-pages-articles-multistream.xml')
 DICT_PATH = Path(r'path\to\dict')
 ```
 
-<!-- ```python exec="1"   session="dump"
-from pathlib import Path
-
-# Specify your own paths
-XML_FILE = Path(r'D:\Dropbox\Python\My_packages\de_wiktio\data\dewiktionary-20241020-pages-articles-multistream.xml')
-DICT_PATH = Path(r"D:\Dropbox\Python\My_packages\de_wiktio\out")
-``` -->
-
-### Parsing the XML File
-
+## Parsing the XML File
 Since we are working with a file, we cannot use the `ET.fromstring` function to parse the XML content. Instead, we must use the `ET.parse` function.
 
 Note that this process can take some time. On my computer, it takes approximately 42 seconds to load the entire XML tree.
 
-<!-- ```python exec="1" source="tabbed-left" result="pycon" session="dump" -->
 === "Source"
     ```python  
-    import lxml.etree as ET
-
     # ET.parse for a xml file
     tree = ET.parse(XML_FILE)
     print(type(tree)) # lxml.etree._ElementTree
@@ -52,7 +38,6 @@ Note that this process can take some time. On my computer, it takes approximatel
     print(type(root)) # <class 'lxml.etree._Element'>
     ```
 === "Result"
-
     ```pycon
     <class 'lxml.etree._ElementTree'>
     <class 'lxml.etree._Element'>
@@ -62,7 +47,7 @@ Note that this process can take some time. On my computer, it takes approximatel
 The parser returns an `ElementTree` object. We use the `getroot()` method to access the root `Element`.
 
 
-### Displaying the XML Structure
+## Displaying the XML Structure
 
 The XML structure of the dump file is quite large, so printing the entire tree would not only be inefficient but also quite overwhelming. To make it more manageable, let us modify our `print_tags_tree` function.
 
@@ -70,7 +55,6 @@ We will add options to limit the number of children displayed for the root eleme
 
 Here is our updated `print_tags_tree` function:
 
-<!-- ```python exec="1"  source="above"  session="dump" -->
 ```python
 def print_tags_tree(elem, level=0, only_tagnames=False, max_children=5, max_level=5):
 
@@ -88,7 +72,6 @@ def print_tags_tree(elem, level=0, only_tagnames=False, max_children=5, max_leve
 
 To display only the first 5 direct children of the root element and limit the tree to the first level:
 
-<!-- ```python exec="1" source="tabbed-left" result="pycon" session="dump" -->
 === "Source"
     ```python
     print_tags_tree(root, only_tagnames=True, max_children=5, max_level=1)
@@ -106,7 +89,6 @@ To display only the first 5 direct children of the root element and limit the tr
 
 To view the first 3 children of the root element and display two levels of the tree:
 
-<!-- ```python exec="1" source="tabbed-left" result="pycon" session="dump" -->
 === "Source"
     ```python
     print_tags_tree(root, only_tagnames=True, max_children=3, max_level=2)
@@ -133,7 +115,9 @@ To view the first 3 children of the root element and display two levels of the t
             2 revision
     ```
  
-### Extracting Data
+## Extracting Data
+
+### `element.findall` 
 
 As with the previous section, we are interested in extracting the `page`, `title`, `ns`, and `text` tags.
 
@@ -141,7 +125,6 @@ The main difference in structure here is that we now have multiple `page` elemen
 
 We cannot use `find`, because it will return only the first `page`. However, we can use the `findall` method instead, which will return a list of all `page` elements.
 
-<!-- ```python exec="1" source="tabbed-left" result="pycon" session="dump" -->
 === "Source"
     ```python
     NAMESPACES = root.nsmap 
@@ -161,7 +144,7 @@ We will create a dictionary, `dict_0`, using page titles as keys and their *wiki
 
 This process may take a couple of minutes!
 
-<!-- ```python exec="1"  source="above"  session="dump" -->
+ 
 ```python
 ns = '0'
 dict_0 = dict()
@@ -175,7 +158,6 @@ for page in pages:
 
 To check that our dictionary is correctly populated, let us print out part of the *wikitext* for a sample page:
 
-<!-- ```python exec="1" source="tabbed-left" result="pycon" session="dump" -->
 === "Source"
     ```python
     print(dict_0['schön'][:300])
@@ -196,24 +178,21 @@ To check that our dictionary is correctly populated, let us print out part of th
 
     ```
 
-### Saving the Dictionary Locally
+## Saving the Dictionary Locally
 
 Once the dictionary is built, we save it locally using the `pickle` module, which allows us to store the dictionary in a serialized format. This way, we will not need to parse the XML file again in the future.
 
 ```python
-import pickle
-
 dict_file = DICT_PATH / f'wikidict_{ns}.pkl'
         
 with open(dict_file, 'wb') as f:
     pickle.dump(dict_0, f)
 ```
 
-### Loading Dictionary
+## Loading Dictionary
 
 The next time you need to retrieve *wikitext*, simply load the dictionary from the pickle file and select the title page you need!
   
-<!-- ```python exec="1" source="tabbed-left" result="pycon" session="dump" -->
 === "Source"
     ```python
     import pickle

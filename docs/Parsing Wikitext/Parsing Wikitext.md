@@ -1,20 +1,44 @@
 [TOC]
 
+## Importing Packages
+```python exec="1" source="above"  session="wiki"
+import requests # to fetch info from URLs
+import lxml.etree as ET # to parse XML data
+import mwparserfromhell # to parse and analyze wikitext
+import re # to extract information using regular expressions
+import functools # to implement caching with a decorator
+```
+
 ## Get the Wikitext Data
 
-We already know how to extract *wikitext* from dump files and the special exports tool. In this section, we will parse this *wikitext*.
+We already know how to extract *wikitext* from **Dump** files and the **Special Exports tool**. In this section, we will parse the *wikitext*.
 
-We will use the word `stark` as an example ([link to the wiktionary page](https://de.wiktionary.org/wiki/stark)). We will retrieve the *wikitext* for the page `stark` from my GitHub repository so that we have the same version of the page. However, you can use either of the two methods we have learned so far to retrieve the *wikitext*. 
+We will use the page titled `stark` ([Wiktionary page](https://de.wiktionary.org/wiki/stark)) and the functions we created in the previous sections based on the **Special Export** method.
+
+```python exec="1" source="above" session="wiki"
+@functools.cache
+def fetch(title):
+    url = f'https://de.wiktionary.org/wiki/Spezial:Exportieren/{title}'
+    resp = requests.get(url)
+    resp.raise_for_status()
+    return resp.text
+
+def fetch_wikitext(title):
+    xml_content = fetch(title)
+    root = ET.fromstring(xml_content)
+    namespaces  = root.nsmap
+    page = root.find('page', namespaces)
+    wikitext = page.find('revision/text', namespaces)
+    return wikitext.text
+
+```
+
+I added `@functools.cache`, optional, to avoid redundant requests and be more respectful to the server. Basically, `@functools.cache` stores results of `fetch(title)`, so repeated calls with the same title return the cached response instead of requesting the page again from the wiki servers. 
 
 
 ```python exec="1" source="tabbed-left" result="pycon" session="wiki"
-import requests
-title = 'stark'
-url = f'https://raw.githubusercontent.com/lennon-c/python-wikitext-parser-guide/refs/heads/main/docs/data/{title}.txt'
-resp = requests.get(url)
-wikitext = resp.text
-
-print(wikitext[:500])
+wikitext = fetch_wikitext('stark')
+print(wikitext[:1000])
 ```
 
 ## Parsing Wikitext 
@@ -22,7 +46,6 @@ print(wikitext[:500])
 First, we need to import `mwparserfromhell`. Then, we use the `parse` function and pass in our wikitext, which will return a `Wikicode` object.
 
 ```python exec="1" source="tabbed-left" result="pycon" session="wiki"
-import mwparserfromhell
 parsed = mwparserfromhell.parse(wikitext)
 print(type(parsed)) # <class 'mwparserfromhell.wikicode.Wikicode'>
 ```
@@ -75,7 +98,7 @@ print_headings_tree(parsed)
 
 - Finally, the **fourth-level** headings contain information on the translation of the word into different languages (`Übersetzungen`).
 
-For my project, I only need the *German-to-German* dictionary. So, let us extract the *wikitext* for that heading. We can use the method `get_sections()`, which accepts a heading level as an argument. Passing **level 2** will split the text into sections based on the second-level headings.
+For my project, I only need the *German-to-German* dictionary. So, let us extract the *wikitext* for that heading. We can use the method `get_sections()`, which accepts a heading level as an argument. Passing level **2** will split the text into sections based on the second-level headings.
 
 ```python exec="1" source="tabbed-left" result="pycon" session="wiki"
 sections = parsed.get_sections(levels=[2])
@@ -291,7 +314,6 @@ Putting everything together, we get the following pattern:
 Let us try it using the `re.search` method:
 
 ```python exec="1" source="tabbed-left" result="pycon" session="wiki"
-import re
 # Define the pattern 
 pattern = r'\n\n\{\{Bedeutungen\}\}\n(.+?)\n\n'
 

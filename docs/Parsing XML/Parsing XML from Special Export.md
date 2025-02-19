@@ -1,40 +1,31 @@
 [TOC]
 
-We will use the `fetch` function as described in our [earlier tutorial on Special Export](../Fetching XML data/Special Exports.md#using-the-requests-library), provided here for reference.
+## Importing Packages 
+```python exec="1" source="above"  session="requests"
+import requests # to fetch info from URLs
+import lxml.etree as ET # to parse XML documents
+```
 
-??? note "The `fetch()` function"
+We will use the `fetch` function as described in our earlier tutorial on Special Exports, provided here for reference.
 
-    ```python exec="true" source="above"   session="requests" 
-    import requests
+```python exec="true" source="above"   session="requests" 
+def fetch(title):
+    url = f'https://de.wiktionary.org/wiki/Spezial:Exportieren/{title}'
+    resp = requests.get(url)
+    resp.raise_for_status()
+    return resp.text
+```
 
-    def fetch(title):
-        # Construct the URL for the XML export of the given page title
-        url = f'https://de.wiktionary.org/wiki/Spezial:Exportieren/{title}'
-        
-        # Send a GET request
-        resp = requests.get(url)
-        
-        # Check if the request was successful, and raise an error if not
-        resp.raise_for_status()
-        
-        # Return the XML content as a string (bytes) 
-        return resp.content
-    ```
+Let us fetch the XML content for the page titled `'schön'` as an example. 
 
-Let's fetch the XML content for the page titled `'schön'` as an example. 
-
-<!-- ```python
-# Fetch the XML content for the page title "schön"
-xml_content = fetch('schön')
-print(xml_content[:500])
-```  -->
 
 ```python exec="true" source="tabbed-left" result="xml" session="requests"
 xml_content = fetch('schön')
 print(xml_content[:500])
+print(f'{type(xml_content) = }')
 ```
 
-### Parsing the XML content
+## Parsing the XML content
 
 Now that we have retrieved the XML content, we will use `lxml.etree` to parse it. 
 
@@ -42,8 +33,6 @@ In order to parse an XML *string*, which is what `fetch` returns, we will use th
  
  
 ```python exec="true" source="tabbed-left" result="pycon" session="requests"
-import lxml.etree as ET
-
 # Parse the XML content into an ET Element
 root = ET.fromstring(xml_content)
 
@@ -79,7 +68,7 @@ print(f'{element.text = }')
 print(f'{type(element.text) = }')
 ```
 
-### Displaying XML Structure
+## Displaying XML Structure
 
 XML data can often be large and complex, especially when deeply nested, which makes understanding its structure difficult.
 
@@ -162,7 +151,7 @@ The main goal of this section is to extract the `page`, `title`, `ns`, and `text
 
 But first, let us briefly discuss XML namespaces. If you are already familiar with XML namespaces, feel free to skip this part.
 
-### XML Namespaces Overview
+## XML Namespaces Overview
 
 In XML, tag names and attributes are user-defined, which can lead to name conflicts when combining data from different XML files. To avoid these conflicts, XML uses a system of namespaces and prefixes. Each namespace is typically defined using a URI.
 
@@ -187,14 +176,14 @@ An even simpler approach is to use the `nsmap` method, which provides a dictiona
 ```python exec="true" source="tabbed-left" result="pycon" session="requests"
 NAMESPACES = root.nsmap
 for key, namespace in NAMESPACES.items():
-    print('key:', key,'=> namespace:', namespace)
+    print('prefix:', key,'=> namespace-URI:', namespace)
 ```
 
-### Extracting Data
+## Extracting Data
 
-#### The `find` Method
+### `element.find` 
 
-To extract elements from the XML, we will use the `find` method, which searches for the first child element with a specified tag name or path.
+To extract elements from the XML, we will use the `find` method, which searches for the **first child element** with a specified **tag name** or **path**.
 
 Note that the following code will fail to find the `page` element and will return `None`. This is because `lxml` requires the correct namespace to be specified if the XML we are working with has declared any namespaces.
 
@@ -217,7 +206,8 @@ page = root.find('{http://www.mediawiki.org/xml/export-0.11/}page')
 print('Full notation:',page) 
 
 # Namespace dictionary
-NAMESPACES = {None: 'http://www.mediawiki.org/xml/export-0.11/'}
+# NAMESPACES = {None: 'http://www.mediawiki.org/xml/export-0.11/'}
+NAMESPACES = root.nsmap
 page = root.find('page', NAMESPACES)
 print('Namespace dictionary:', page)  
 ```
@@ -258,3 +248,29 @@ print(wikitext.text[:300])
 ```
 
 We are done; we have just retrieved the **wikitext** content from the XML string.
+
+
+Before moving on to the next section, let us quickly recap what we have learned by using functions.
+
+```python exec="true" source="tabbed-left" result="pycon" session="requests"
+import requests
+import lxml.etree as ET
+
+def fetch(title):
+    url = f'https://de.wiktionary.org/wiki/Spezial:Exportieren/{title}'
+    resp = requests.get(url)
+    resp.raise_for_status()
+    return resp.text
+
+def fetch_wikitext(title):
+    xml_content = fetch(title)
+    root = ET.fromstring(xml_content)
+    namespaces  = root.nsmap
+    page = root.find('page', namespaces)
+    wikitext = page.find('revision/text', namespaces)
+    return wikitext.text 
+
+# let us try it 
+print(fetch_wikitext('schön')[:5000])
+```
+

@@ -8,7 +8,7 @@ theme:
   features:
     - content.code.copy
     - content.tabs.link
-    - navigation.expand
+    # - navigation.expand
     # - navigation.tabs
     - navigation.tabs.sticky
     - navigation.footer
@@ -41,13 +41,14 @@ nav:
     - Parsing Wikitext/index.md
     - Wiki Basics: Parsing Wikitext/Wiki Basics.md
     - Parsing Wikitext: Parsing Wikitext/Parsing Wikitext.md
+- Pycon AT: 
+  - Workshop: pycon_at.md
 
 
 
 plugins:
   - autorefs
   - search
-  # - callouts # obsidian callout
   - open-in-new-tab: 
       add_icon: false
   - markdown-exec

@@ -4,7 +4,9 @@
 # Cache
 __pycache__/
 .pytest_cache/
- 
+
+# Secrets
+.env
 
 # editors
 .vscode/
