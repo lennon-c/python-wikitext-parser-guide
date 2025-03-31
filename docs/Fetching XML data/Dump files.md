@@ -10,7 +10,7 @@
     - This will download the compressed file: `dewiktionary-latest-pages-articles-multistream.xml.bz2`.
     - The file is stored in this directory: [https://dumps.wikimedia.org/dewiktionary/latest/](https://dumps.wikimedia.org/dewiktionary/latest/).
 
-### Older Versions
+### Latest (alternative way) and Older Versions
 
 - If you need an older version of the Wiktionary dump, visit this directory: [https://dumps.wikimedia.org/dewiktionary/](https://dumps.wikimedia.org/dewiktionary/).
     - To download a specific version:

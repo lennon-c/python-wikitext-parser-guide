@@ -81,6 +81,7 @@ def split_code_text(file):
             code_list.append(('code', code))
         else:
             text = s.replace('[TOC]', '')
+            text = text.replace(':fontawesome-regular-face-smile:', '')
             text = text.replace('=== "Source"', '')
             text = text.replace('=== "Result"', '')
             text = re.sub(PYCON, '', text, flags=re.DOTALL)
@@ -124,8 +125,8 @@ def modified_code_text(file):
 
 """
     code ="""import urllib
-XML_FILE = "playground_dump_20241020.xml"
-DICT_PATH = ""
+XML_FILE = Path("playground_dump_20241020.xml")
+DICT_PATH = Path("")
 
 url =  "https://raw.githubusercontent.com/lennon-c/pycon_at/refs/heads/main/data/playground_dump_20241020.xml"
 

@@ -225,6 +225,7 @@ def template_to_dict(template):
                 for p in template.params}
     return params
 ```
+Now, let us see the result.
 
 ```python exec="1" source="tabbed-left" result="pycon" session="wiki"
 params = template_to_dict(wortart_tpl)
