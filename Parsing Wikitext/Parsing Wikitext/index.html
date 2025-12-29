@@ -1,0 +1,2092 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Wiki%20Basics/">
+      
+      
+        <link rel="next" href="../../pycon_at/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Parsing Wikitext - Parsing Wikitext with Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../assets/_markdown_exec_ansi.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="yellow" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#importing-packages" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Parsing Wikitext with Python" class="md-header__button md-logo" aria-label="Parsing Wikitext with Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Parsing Wikitext with Python
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Parsing Wikitext
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lennon-c/python-wikitext-parser-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Parsing Wikitext with Python" class="md-nav__button md-logo" aria-label="Parsing Wikitext with Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Parsing Wikitext with Python
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lennon-c/python-wikitext-parser-guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A Hands-On Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    A Hands-On Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Fetching%20XML%20data/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fetching XML
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fetching XML
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fetching%20XML%20data/Special%20Exports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Special Export tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fetching%20XML%20data/Dump%20files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dump File
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Parsing%20XML/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parsing XML
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Parsing XML
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Parsing%20XML/Parsing%20XML%20from%20Special%20Export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From Special Export
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Parsing%20XML/Parsing%20XML%20from%20Dump%20file/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From Dump file
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parsing Wikitext
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Parsing Wikitext
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Wiki%20Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wiki Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parsing Wikitext
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parsing Wikitext
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#importing-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Importing Packages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-the-wikitext-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get the Wikitext Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parsing-wikitext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parsing Wikitext
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieving-headings-and-sectioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retrieving Headings and Sectioning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extracting-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extracting Templates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extracting Templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wortart-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wortart Template
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conjugation-or-declension-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conjugation or Declension Templates
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extracting-other-important-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extracting Other Important Content
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pycon AT
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pycon AT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pycon_at/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workshop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#importing-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Importing Packages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-the-wikitext-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get the Wikitext Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parsing-wikitext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parsing Wikitext
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieving-headings-and-sectioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retrieving Headings and Sectioning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extracting-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extracting Templates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extracting Templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wortart-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wortart Template
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conjugation-or-declension-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conjugation or Declension Templates
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extracting-other-important-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extracting Other Important Content
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Parsing Wikitext</h1>
+
+<div class="toc"><span class="toctitle">On this page</span><ul>
+<li><a href="#importing-packages">Importing Packages</a></li>
+<li><a href="#get-the-wikitext-data">Get the Wikitext Data</a></li>
+<li><a href="#parsing-wikitext">Parsing Wikitext</a></li>
+<li><a href="#retrieving-headings-and-sectioning">Retrieving Headings and Sectioning</a></li>
+<li><a href="#extracting-templates">Extracting Templates</a><ul>
+<li><a href="#wortart-template">Wortart Template</a></li>
+<li><a href="#conjugation-or-declension-templates">Conjugation or Declension Templates</a></li>
+</ul>
+</li>
+<li><a href="#extracting-other-important-content">Extracting Other Important Content</a></li>
+</ul>
+</div>
+<h2 id="importing-packages">Importing Packages<a class="headerlink" href="#importing-packages" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span> <span class="c1"># to fetch info from URLs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lxml.etree</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ET</span> <span class="c1"># to parse XML data</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mwparserfromhell</span> <span class="c1"># to parse and analyze wikitext</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span> <span class="c1"># to extract information using regular expressions</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">functools</span> <span class="c1"># to implement caching with a decorator</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="get-the-wikitext-data">Get the Wikitext Data<a class="headerlink" href="#get-the-wikitext-data" title="Permanent link">&para;</a></h2>
+<p>We already know how to extract <em>wikitext</em> from <strong>Dump</strong> files and the <strong>Special Exports tool</strong>. In this section, we will parse the <em>wikitext</em>.</p>
+<p>We will use the page titled <code>stark</code> (<a href="https://de.wiktionary.org/wiki/stark">Wiktionary page</a>) and the functions we created in the previous sections based on the <strong>Special Export</strong> method.</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@functools</span><span class="o">.</span><span class="n">cache</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fetch</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://de.wiktionary.org/wiki/Spezial:Exportieren/</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;Search for German words (https://lennon-c.github.io/python-wikitext-parser-guide)&quot;</span>
+    <span class="p">}</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fetch_wikitext</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="n">xml_content</span> <span class="o">=</span> <span class="n">fetch</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">xml_content</span><span class="p">)</span>
+    <span class="n">namespaces</span>  <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">nsmap</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="n">namespaces</span><span class="p">)</span>
+    <span class="n">wikitext</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;revision/text&#39;</span><span class="p">,</span> <span class="n">namespaces</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wikitext</span><span class="o">.</span><span class="n">text</span>
+</code></pre></div></td></tr></table></div>
+<p>I added <code>@functools.cache</code>, optional, to avoid redundant requests and be more respectful to the server. Basically, <code>@functools.cache</code> stores results of <code>fetch(title)</code>, so repeated calls with the same title return the cached response instead of requesting the page again from the wiki servers. </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-8--__tabbed_1_1" name="exec-8--__tabbed_1" type="radio" /><input id="exec-8--__tabbed_1_2" name="exec-8--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-8--__tabbed_1_1">Source</label><label for="exec-8--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">wikitext</span> <span class="o">=</span> <span class="n">fetch_wikitext</span><span class="p">(</span><span class="s1">&#39;stark&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">wikitext</span><span class="p">[:</span><span class="mi">1000</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">{{Siehe auch|[[stærk]], [[stärk]]}}</span>
+<span class="go">== stark ({{Sprache|Deutsch}}) ==</span>
+<span class="go">=== {{Wortart|Adjektiv|Deutsch}} ===</span>
+
+<span class="go">{{Deutsch Adjektiv Übersicht</span>
+<span class="go">|Positiv=stark</span>
+<span class="go">|Komparativ=stärker</span>
+<span class="go">|Superlativ=stärksten</span>
+<span class="go">|Bild 1=Weight lifting black and white.jpg|mini|1|eine &#39;&#39;starke&#39;&#39; [[Frau]] beim [[Gewichtheben]]</span>
+<span class="go">|Bild 2=Agonis Flexuosa - bark.jpg|mini|3|ein &#39;&#39;starker&#39;&#39; [[Baumstamm]]</span>
+<span class="go">|Bild 3=Snow pile (3123493946).jpg|mini|4|Es hat &#39;&#39;stark&#39;&#39; [[schneien|geschneit]].</span>
+<span class="go">}}</span>
+
+<span class="go">{{Worttrennung}}</span>
+<span class="go">:stark, {{Komp.}} stär·ker, {{Sup.}} am stärks·ten</span>
+
+<span class="go">{{Aussprache}}</span>
+<span class="go">:{{IPA}} {{Lautschrift|ʃtaʁk}}</span>
+<span class="go">:{{Hörbeispiele}} {{Audio|De-stark.ogg}}, {{Audio|De-stark2.ogg}}, {{Audio|De-at-stark.ogg|spr=at}}</span>
+<span class="go">:{{Reime}} {{Reim|aʁk|Deutsch}}</span>
+
+<span class="go">{{Bedeutungen}}</span>
+<span class="go">:[1] mit [[Kraft]] [[ausgestattet]], von Kraft [[prägen|geprägt]], [[zeugen]]d</span>
+<span class="go">:[2] [[hoch|hohe]] [[Leistung]] [[erbringen]]d; sehr [[leistungsfähig]]</span>
+<span class="go">:[3] [[äußer-|äußeren]] [[Einfluss|Einflüssen]], [[Belastung]]en [[standhalten]]d (aufgrund von [[Größe]], [[Dicke]] oder Ähnlichem)</span>
+<span class="go">:[</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<h2 id="parsing-wikitext">Parsing Wikitext<a class="headerlink" href="#parsing-wikitext" title="Permanent link">&para;</a></h2>
+<p>First, we need to import <code>mwparserfromhell</code>. Then, we use the <code>parse</code> function and pass in our wikitext, which will return a <code>Wikicode</code> object.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-9--__tabbed_1_1" name="exec-9--__tabbed_1" type="radio" /><input id="exec-9--__tabbed_1_2" name="exec-9--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-9--__tabbed_1_1">Source</label><label for="exec-9--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">parsed</span> <span class="o">=</span> <span class="n">mwparserfromhell</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">wikitext</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">parsed</span><span class="p">))</span> <span class="c1"># &lt;class &#39;mwparserfromhell.wikicode.Wikicode&#39;&gt;</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">&lt;class &#39;mwparserfromhell.wikicode.Wikicode&#39;&gt;</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<h2 id="retrieving-headings-and-sectioning">Retrieving Headings and Sectioning<a class="headerlink" href="#retrieving-headings-and-sectioning" title="Permanent link">&para;</a></h2>
+<p><code>Wikicode</code> objects have several capabilities. You can obtain lists of different components of the <em>wikitext</em> by using a set of <code>filter</code> methods. For instance, you can use the <code>filter_headings</code> method to retrieve a list of all headings as follows:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-10--__tabbed_1_1" name="exec-10--__tabbed_1" type="radio" /><input id="exec-10--__tabbed_1_2" name="exec-10--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-10--__tabbed_1_1">Source</label><label for="exec-10--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">headings</span> <span class="o">=</span> <span class="n">parsed</span><span class="o">.</span><span class="n">filter_headings</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">headings</span><span class="p">))</span> <span class="c1"># &lt;class &#39;list&#39;&gt;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">headings</span><span class="p">))</span> <span class="c1"># 11</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">&lt;class &#39;list&#39;&gt;</span>
+<span class="go">11</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>We found 11 headings. Each element of the list is a <code>Heading</code> object. We can extract the <code>title</code> and the <code>level</code> of the heading objects.</p>
+<p>Let us inspect the first heading in the list:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-11--__tabbed_1_1" name="exec-11--__tabbed_1" type="radio" /><input id="exec-11--__tabbed_1_2" name="exec-11--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-11--__tabbed_1_1">Source</label><label for="exec-11--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">heading</span> <span class="o">=</span> <span class="n">headings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">heading</span><span class="w"> </span><span class="si">= }</span><span class="se">\n</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">heading</span><span class="p">)</span><span class="w"> </span><span class="si">= }</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">heading</span><span class="o">.</span><span class="n">level</span><span class="w"> </span><span class="si">= }</span><span class="se">\n</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">heading</span><span class="o">.</span><span class="n">level</span><span class="p">)</span><span class="w"> </span><span class="si">= }</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">heading</span><span class="o">.</span><span class="n">title</span><span class="w"> </span><span class="si">= }</span><span class="se">\n</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">heading</span><span class="o">.</span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="si">= }</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">heading = &#39;== stark ({{Sprache|Deutsch}}) ==&#39;</span>
+<span class="go">type(heading) = &lt;class &#39;mwparserfromhell.nodes.heading.Heading&#39;&gt;</span>
+
+<span class="go">heading.level = 2</span>
+<span class="go">type(heading.level) = &lt;class &#39;int&#39;&gt;</span>
+
+<span class="go">heading.title = &#39; stark ({{Sprache|Deutsch}}) &#39;</span>
+<span class="go">type(heading.title) = &lt;class &#39;mwparserfromhell.wikicode.Wikicode&#39;&gt;</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>The first heading is a <strong>second-level</strong> heading with the title <code>stark ({{Sprache|Deutsch}})</code>. Notice that we did not find any <strong>first-level</strong> headings. This is because the <strong>first-level</strong> heading is reserved for internal use, and wiki contributors can only begin creating headings from the <strong>second level</strong> onwards.</p>
+<p>Let us use this information to create a helper function that prints the headings tree of the text.</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">print_headings_tree</span><span class="p">(</span><span class="n">parsed</span><span class="p">):</span>
+    <span class="n">headings</span> <span class="o">=</span> <span class="n">parsed</span><span class="o">.</span><span class="n">filter_headings</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">heading</span> <span class="ow">in</span> <span class="n">headings</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">*</span><span class="p">(</span><span class="n">heading</span><span class="o">.</span><span class="n">level</span> <span class="o">-</span> <span class="mi">2</span><span class="p">),</span> <span class="n">heading</span><span class="o">.</span><span class="n">level</span><span class="p">,</span> <span class="n">heading</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-13--__tabbed_1_1" name="exec-13--__tabbed_1" type="radio" /><input id="exec-13--__tabbed_1_2" name="exec-13--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-13--__tabbed_1_1">Source</label><label for="exec-13--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">print_headings_tree</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go"> 2  stark ({{Sprache|Deutsch}}) </span>
+<span class="go">      3  {{Wortart|Adjektiv|Deutsch}} </span>
+<span class="go">           4  {{Übersetzungen}} </span>
+<span class="go"> 2  stark ({{Sprache|Englisch}}) </span>
+<span class="go">      3  {{Wortart|Adjektiv|Englisch}} </span>
+<span class="go">           4  {{Übersetzungen}} </span>
+<span class="go">      3  {{Wortart|Adverb|Englisch}} </span>
+<span class="go">           4  {{Übersetzungen}} </span>
+<span class="go"> 2  stark ({{Sprache|Schwedisch}}) </span>
+<span class="go">      3  {{Wortart|Adjektiv|Schwedisch}} </span>
+<span class="go">           4  {{Übersetzungen}} </span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<ul>
+<li>
+<p>The first thing to notice when looking at the <strong>second-level</strong> headings is that the <code>Sprache</code> includes not only <code>Deutsch</code>, but also <code>Englisch</code> and <code>Schwedisch</code>.</p>
+<ul>
+<li>Indeed, wiktionaries are multilingual. Thus, the German Wiktionary does not only cover information related to the <em>German-to-German</em> dictionary, but also includes bilingual dictionaries for several languages to German, such as <em>English to German</em> in this example.</li>
+</ul>
+</li>
+<li>
+<p>Notice as well that the <strong>third-level</strong> headings refer to the word forms (<code>Wortart</code>). A word can have one or more word forms. For instance, in English, <code>stark</code> is both an <em>adjective</em> and an <em>adverb</em>.</p>
+</li>
+<li>
+<p>Finally, the <strong>fourth-level</strong> headings contain information on the translation of the word into different languages (<code>Übersetzungen</code>).</p>
+</li>
+</ul>
+<p>For my project, I only need the <em>German-to-German</em> dictionary. So, let us extract the <em>wikitext</em> for that heading. We can use the method <code>get_sections()</code>, which accepts a heading level as an argument. Passing level <strong>2</strong> will split the text into sections based on the second-level headings.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-14--__tabbed_1_1" name="exec-14--__tabbed_1" type="radio" /><input id="exec-14--__tabbed_1_2" name="exec-14--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-14--__tabbed_1_1">Source</label><label for="exec-14--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">sections</span> <span class="o">=</span> <span class="n">parsed</span><span class="o">.</span><span class="n">get_sections</span><span class="p">(</span><span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sections</span><span class="p">))</span> <span class="c1"># 3</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">3</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>We obtained a list of 3 sections, one for each of the languages.</p>
+<p>We could use <code>sections_DE = sections.pop(0)</code> to obtain the <em>German</em> section. Alternatively, we can use the <code>matches</code> parameter to retrieve sections whose heading title matches <code>Deutsch</code>, as follows:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-15--__tabbed_1_1" name="exec-15--__tabbed_1" type="radio" /><input id="exec-15--__tabbed_1_2" name="exec-15--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-15--__tabbed_1_1">Source</label><label for="exec-15--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">sections_DE</span> <span class="o">=</span> <span class="n">parsed</span><span class="o">.</span><span class="n">get_sections</span><span class="p">(</span><span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">matches</span><span class="o">=</span><span class="s2">&quot;Deutsch&quot;</span><span class="p">)</span>
+
+<span class="c1"># get_section() retreives always a list!</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">sections_DE</span><span class="p">))</span> <span class="c1"># &lt;class &#39;list&#39;&gt;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sections_DE</span><span class="p">))</span> <span class="c1"># 1</span>
+
+<span class="c1"># Get the first element.</span>
+<span class="n">sections_DE</span> <span class="o">=</span> <span class="n">sections_DE</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">sections_DE</span><span class="p">))</span> <span class="c1"># &lt;class &#39;mwparserfromhell.wikicode.Wikicode&#39;&gt;</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">&lt;class &#39;list&#39;&gt;</span>
+<span class="go">1</span>
+<span class="go">&lt;class &#39;mwparserfromhell.wikicode.Wikicode&#39;&gt;</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Let us have a look inside the <em>German</em> section.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-16--__tabbed_1_1" name="exec-16--__tabbed_1" type="radio" /><input id="exec-16--__tabbed_1_2" name="exec-16--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-16--__tabbed_1_1">Source</label><label for="exec-16--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">sections_DE</span><span class="p">[:</span><span class="mi">450</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">== stark ({{Sprache|Deutsch}}) ==</span>
+<span class="go">=== {{Wortart|Adjektiv|Deutsch}} ===</span>
+
+<span class="go">{{Deutsch Adjektiv Übersicht</span>
+<span class="go">|Positiv=stark</span>
+<span class="go">|Komparativ=stärker</span>
+<span class="go">|Superlativ=stärksten</span>
+<span class="go">|Bild 1=Weight lifting black and white.jpg|mini|1|eine &#39;&#39;starke&#39;&#39; [[Frau]] beim [[Gewichtheben]]</span>
+<span class="go">|Bild 2=Agonis Flexuosa - bark.jpg|mini|3|ein &#39;&#39;starker&#39;&#39; [[Baumstamm]]</span>
+<span class="go">|Bild 3=Snow pile (3123493946).jpg|mini|4|Es hat &#39;&#39;stark&#39;&#39; [[schneien|geschneit]].</span>
+<span class="go">}}</span>
+
+<span class="go">{{Worttrennung}}</span>
+<span class="go">:stark, {{Komp.}} s</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Sections include all of their subheadings by default.</p>
+<p><div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-17--__tabbed_1_1" name="exec-17--__tabbed_1" type="radio" /><input id="exec-17--__tabbed_1_2" name="exec-17--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-17--__tabbed_1_1">Source</label><label for="exec-17--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">print_headings_tree</span><span class="p">(</span><span class="n">sections_DE</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go"> 2  stark ({{Sprache|Deutsch}}) </span>
+<span class="go">      3  {{Wortart|Adjektiv|Deutsch}} </span>
+<span class="go">           4  {{Übersetzungen}} </span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div><br />
+If you want to retrieve a section but not its subsections, set the <code>flat</code> parameter to <code>True</code>.</p>
+<p>For instance, if we want to retrieve <code>Wortart</code> sections (level 3) without including the translation sections <code>Übersetzungen</code> (level 4), we can use the following code:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-18--__tabbed_1_1" name="exec-18--__tabbed_1" type="radio" /><input id="exec-18--__tabbed_1_2" name="exec-18--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-18--__tabbed_1_1">Source</label><label for="exec-18--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># flat = True</span>
+<span class="n">wordforms_DE</span> <span class="o">=</span> <span class="n">sections_DE</span><span class="o">.</span><span class="n">get_sections</span><span class="p">(</span><span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+                                        <span class="p">,</span> <span class="n">matches</span><span class="o">=</span><span class="s2">&quot;Wortart&quot;</span>
+                                        <span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Get the first element</span>
+<span class="n">wordforms_DE</span> <span class="o">=</span> <span class="n">wordforms_DE</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Check </span>
+<span class="n">print_headings_tree</span><span class="p">(</span><span class="n">wordforms_DE</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">      3  {{Wortart|Adjektiv|Deutsch}} </span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>The most important information one might be interested in extracting is contained in the <em>Wortart</em> section. Here, you can find definitions, example phrases, synonyms, antonyms, rhymes, proverbs, translations, and more.</p>
+<p>Since most of this information is related in one way or another to templates, let us learn how to use <code>mwparserfromhell</code> to extract wiki templates.</p>
+<h2 id="extracting-templates">Extracting Templates<a class="headerlink" href="#extracting-templates" title="Permanent link">&para;</a></h2>
+<p>You can use the <code>filter_templates</code> method to obtain a list of templates. Each element in the returned list will be a <code>Template</code> object.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-19--__tabbed_1_1" name="exec-19--__tabbed_1" type="radio" /><input id="exec-19--__tabbed_1_2" name="exec-19--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-19--__tabbed_1_1">Source</label><label for="exec-19--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">wordforms_tpls</span> <span class="o">=</span> <span class="n">wordforms_DE</span><span class="o">.</span><span class="n">filter_templates</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wordforms_tpls</span><span class="p">))</span> <span class="c1"># 49</span>
+<span class="n">tpl</span> <span class="o">=</span> <span class="n">wordforms_tpls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">tpl</span><span class="p">))</span> <span class="c1"># &lt;class &#39;mwparserfromhell.nodes.template.Template&#39;&gt;</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">49</span>
+<span class="go">&lt;class &#39;mwparserfromhell.nodes.template.Template&#39;&gt;</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>The wikicode <code>wordforms_DE</code> contains 49 templates. Let us print the first 3 templates.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-20--__tabbed_1_1" name="exec-20--__tabbed_1" type="radio" /><input id="exec-20--__tabbed_1_2" name="exec-20--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-20--__tabbed_1_1">Source</label><label for="exec-20--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">for</span> <span class="n">tpl</span> <span class="ow">in</span> <span class="n">wordforms_tpls</span><span class="p">[:</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tpl</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">{{Wortart|Adjektiv|Deutsch}} </span>
+
+<span class="go">{{Deutsch Adjektiv Übersicht</span>
+<span class="go">|Positiv=stark</span>
+<span class="go">|Komparativ=stärker</span>
+<span class="go">|Superlativ=stärksten</span>
+<span class="go">|Bild 1=Weight lifting black and white.jpg|mini|1|eine &#39;&#39;starke&#39;&#39; [[Frau]] beim [[Gewichtheben]]</span>
+<span class="go">|Bild 2=Agonis Flexuosa - bark.jpg|mini|3|ein &#39;&#39;starker&#39;&#39; [[Baumstamm]]</span>
+<span class="go">|Bild 3=Snow pile (3123493946).jpg|mini|4|Es hat &#39;&#39;stark&#39;&#39; [[schneien|geschneit]].</span>
+<span class="go">}} </span>
+
+<span class="go">{{Worttrennung}} </span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>There are two important templates worth examining: the <code>Wortart</code> template and the <code>Übersicht</code> template. These are the first and second templates in the template list <code>wordforms_tpls</code>.</p>
+<h3 id="wortart-template"><code>Wortart</code> Template<a class="headerlink" href="#wortart-template" title="Permanent link">&para;</a></h3>
+<p>From the <code>Wortart</code> template, you can extract the <em>Part of Speech</em> (POS), which indicates the type of word, such as nouns, verbs, and adjectives.</p>
+<p>You can extract this template using <code>wortart_tpl = wortart_tpls[0]</code> or, alternatively, by using the <code>matches</code> parameter.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-21--__tabbed_1_1" name="exec-21--__tabbed_1" type="radio" /><input id="exec-21--__tabbed_1_2" name="exec-21--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-21--__tabbed_1_1">Source</label><label for="exec-21--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">wortart_tpls</span> <span class="o">=</span> <span class="n">wordforms_DE</span><span class="o">.</span><span class="n">filter_templates</span><span class="p">(</span><span class="n">matches</span><span class="o">=</span><span class="s1">&#39;Wortart&#39;</span><span class="p">)</span>
+<span class="n">wortart_tpl</span> <span class="o">=</span> <span class="n">wortart_tpls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">wortart_tpl</span><span class="p">)</span> <span class="c1"># {{Wortart|Adjektiv|Deutsch}}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">{{Wortart|Adjektiv|Deutsch}}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Let us get the <code>name</code> and parameters (<code>params</code>) of the template:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-22--__tabbed_1_1" name="exec-22--__tabbed_1" type="radio" /><input id="exec-22--__tabbed_1_2" name="exec-22--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-22--__tabbed_1_1">Source</label><label for="exec-22--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">wortart_tpl</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1"># Wortart</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">wortart_tpl</span><span class="o">.</span><span class="n">params</span><span class="p">)</span> <span class="c1"># [&#39;Adjektiv&#39;, &#39;Deutsch&#39;]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">wortart_tpl</span><span class="o">.</span><span class="n">params</span><span class="p">))</span> <span class="c1"># &lt;class &#39;list&#39;&gt;</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">Wortart</span>
+<span class="go">[&#39;Adjektiv&#39;, &#39;Deutsch&#39;]</span>
+<span class="go">&lt;class &#39;list&#39;&gt;</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>The <code>wortart_tpl</code> template has two unnamed parameters. The first is assigned the name <code>'1'</code> and contains information about the POS of the word (here, <code>'Adjektiv'</code>). The second is assigned the name <code>'2'</code> and relates to the language (here, <code>'Deutsch'</code>).</p>
+<p>Since <code>wortart_tpl.params</code> is simply a list, you can use list <strong>indexes</strong> to extract any parameter. For instance, you can use <code>wortart_tpl.params[1]</code> to extract the second parameter.</p>
+<p>You can also extract a parameter by its <strong>name</strong> using the <code>get</code> method.</p>
+<p>Let us extract the POS parameter by name (<code>'1'</code>).</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-23--__tabbed_1_1" name="exec-23--__tabbed_1" type="radio" /><input id="exec-23--__tabbed_1_2" name="exec-23--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-23--__tabbed_1_1">Source</label><label for="exec-23--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">pos</span> <span class="o">=</span> <span class="n">wortart_tpl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span><span class="w"> </span><span class="si">= }</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pos</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="si">= }</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="si">= }</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pos</span><span class="o">.</span><span class="n">value</span><span class="w"> </span><span class="si">= }</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="si">= }</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">type(pos) = &lt;class &#39;mwparserfromhell.nodes.extras.parameter.Parameter&#39;&gt;</span>
+
+<span class="go">pos.name = &#39;1&#39;</span>
+<span class="go">type(pos.name) = &lt;class &#39;mwparserfromhell.wikicode.Wikicode&#39;&gt;</span>
+
+<span class="go">pos.value = &#39;Adjektiv&#39;</span>
+<span class="go">type(pos.value) = &lt;class &#39;mwparserfromhell.wikicode.Wikicode&#39;&gt;</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Note that the parameter <code>pos</code> is a <code>Parameter</code> object with <code>name</code> and <code>value</code> attributes. Also, notice that the <code>name</code> and <code>value</code> attributes are not strings but <code>Wikicode</code> objects!</p>
+<p>If you need the string representation of these objects, you can use the <code>str()</code> function. For instance, let us create a helper function that will transform the parameters of a <code>Template</code> into a dictionary of strings:</p>
+<p><div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">template_to_dict</span><span class="p">(</span><span class="n">template</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get dictionary from template object.&quot;&quot;&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> 
+                <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">template</span><span class="o">.</span><span class="n">params</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">params</span>
+</code></pre></div></td></tr></table></div><br />
+Now, let us see the result.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-25--__tabbed_1_1" name="exec-25--__tabbed_1" type="radio" /><input id="exec-25--__tabbed_1_2" name="exec-25--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-25--__tabbed_1_1">Source</label><label for="exec-25--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">params</span> <span class="o">=</span> <span class="n">template_to_dict</span><span class="p">(</span><span class="n">wortart_tpl</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span> <span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">1 = Adjektiv</span>
+<span class="go">2 = Deutsch</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<h3 id="conjugation-or-declension-templates">Conjugation or Declension Templates<a class="headerlink" href="#conjugation-or-declension-templates" title="Permanent link">&para;</a></h3>
+<p>The "conjugation or declension table," referred to as "Flexionstabelle" in the German Wiktionary, is constructed from templates whose names end with <code>Übersicht</code>:</p>
+<ul>
+<li><code>Deutsch Adjektiv Übersicht</code></li>
+<li><code>Deutsch Substantiv Übersicht</code></li>
+<li><code>Deutsch Verb Übersicht</code>, etc.</li>
+</ul>
+<p>Therefore, we can obtain these templates by matching the word <code>Übersicht</code>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-26--__tabbed_1_1" name="exec-26--__tabbed_1" type="radio" /><input id="exec-26--__tabbed_1_2" name="exec-26--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-26--__tabbed_1_1">Source</label><label for="exec-26--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">übersichts_tpls</span> <span class="o">=</span> <span class="n">wordforms_DE</span><span class="o">.</span><span class="n">filter_templates</span><span class="p">(</span><span class="n">matches</span><span class="o">=</span><span class="s1">&#39;Übersicht&#39;</span><span class="p">)</span>
+
+<span class="c1"># Check length</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">übersichts_tpls</span><span class="p">))</span> <span class="c1"># 1</span>
+
+<span class="c1"># Extract template</span>
+<span class="n">übersichts_tpl</span> <span class="o">=</span> <span class="n">übersichts_tpls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Print name</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">übersichts_tpl</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="si">= }</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">1</span>
+<span class="go">übersichts_tpl.name = &#39;Deutsch Adjektiv Übersicht\n&#39;</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Let us print it using our helper function:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-27--__tabbed_1_1" name="exec-27--__tabbed_1" type="radio" /><input id="exec-27--__tabbed_1_2" name="exec-27--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-27--__tabbed_1_1">Source</label><label for="exec-27--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">template_to_dict</span><span class="p">(</span><span class="n">übersichts_tpl</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span> <span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">Positiv = stark</span>
+<span class="go">Komparativ = stärker</span>
+<span class="go">Superlativ = stärksten</span>
+<span class="go">Bild 1 = Weight lifting black and white.jpg</span>
+<span class="go">1 = mini</span>
+<span class="go">2 = 1</span>
+<span class="go">3 = eine &#39;&#39;starke&#39;&#39; [[Frau]] beim [[Gewichtheben]]</span>
+<span class="go">Bild 2 = Agonis Flexuosa - bark.jpg</span>
+<span class="go">4 = mini</span>
+<span class="go">5 = 3</span>
+<span class="go">6 = ein &#39;&#39;starker&#39;&#39; [[Baumstamm]]</span>
+<span class="go">Bild 3 = Snow pile (3123493946).jpg</span>
+<span class="go">7 = mini</span>
+<span class="go">8 = 4</span>
+<span class="go">9 = Es hat &#39;&#39;stark&#39;&#39; [[schneien|geschneit]].</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>This is more information than I need. I will exclude keys that contain <code>Bild</code> and all unnamed parameters (those with numeric names). These parameters relate to the images and their formatting that appear at the bottom of the declension table on the wiki page.</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">übersichts_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">template_to_dict</span><span class="p">(</span><span class="n">übersichts_tpl</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> 
+                <span class="k">if</span> <span class="s1">&#39;Bild&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">k</span>  
+                <span class="ow">and</span> <span class="ow">not</span> <span class="n">k</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()}</span>
+</code></pre></div></td></tr></table></div>
+<p>Let us see what we have obtained:</p>
+<p><div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-29--__tabbed_1_1" name="exec-29--__tabbed_1" type="radio" /><input id="exec-29--__tabbed_1_2" name="exec-29--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-29--__tabbed_1_1">Source</label><label for="exec-29--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">übersichts_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span> <span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">Positiv = stark</span>
+<span class="go">Komparativ = stärker</span>
+<span class="go">Superlativ = stärksten</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div><br />
+That is exactly what I need. <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M464 256a208 208 0 1 0-416 0 208 208 0 1 0 416 0M0 256a256 256 0 1 1 512 0 256 256 0 1 1-512 0m177.3 63.4c15 15.6 41.1 32.6 78.7 32.6s63.7-17 78.7-32.6c9.2-9.6 24.4-9.9 33.9-.7s9.9 24.4.7 33.9c-22.1 23-60 47.4-113.3 47.4s-91.2-24.4-113.3-47.4c-9.2-9.6-8.9-24.8.7-33.9s24.8-8.9 33.9.7M144 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0m192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64"/></svg></span></p>
+<h2 id="extracting-other-important-content">Extracting Other Important Content<a class="headerlink" href="#extracting-other-important-content" title="Permanent link">&para;</a></h2>
+<p>Although <code>mwparserfromhell</code> is an excellent tool, not all tasks can be accomplished using only this tool. Sometimes, it is necessary to incorporate regular expressions here and there.</p>
+<p>If you want to extract, for instance, the <code>Bedeutungen</code> (Meanings), the <code>Beispiele</code> (Phrase Examples), the <code>Synonyme</code> (Synonyms), or the <code>Sprichwörter</code> (Proverbs), among others, you may notice that they all follow the same pattern.</p>
+<p>We can take advantage of this pattern and begin writing the blocks for our regular expression right away.</p>
+<p>For all of them:</p>
+<ul>
+<li>Their content is located in separate paragraphs:<ul>
+<li>They start and end with two new lines <code>\n\n ... \n\n</code>.</li>
+</ul>
+</li>
+<li>The <strong>first line</strong> of the paragraph contains only a template without parameters, whose <code>name</code> indicates the type of content in the paragraph:<ul>
+<li>For example, <code>{{Bedeutungen}}\n</code> or <code>{{Beispiele}}\n</code>.</li>
+<li>Note that <code>{</code> are special characters in regular expressions, so we must escape them using <code>\</code>:<ul>
+<li><code>\{\{Bedeutungen\}\}\n</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>From the <strong>second line</strong> onward, the content we want to extract begins:<ul>
+<li>It includes at least one or more characters <code>.+</code>.</li>
+<li>It can span several lines.<ul>
+<li>Note that <code>.</code> matches any character except new lines. Since we want the content to span multiple lines, we need to add the flag <code>re.DOTALL</code> so that <code>.</code> can match new lines (<code>\n</code>) as well.</li>
+</ul>
+</li>
+<li>It should stop when a new paragraph starts:<ul>
+<li>To ensure this, we add the non-greedy qualifier <code>?</code>, making it <code>.+?</code>.</li>
+</ul>
+</li>
+<li>Finally, we want to retrieve the content starting from the second line onward:<ul>
+<li>To do this, we create a capturing group by enclosing it in parentheses:<ul>
+<li><code>(.+?)</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Putting everything together, we get the following pattern:</p>
+<p><code>r'\n\n\{\{Bedeutungen\}\}\n(.+?)\n\n'</code>, which should be used with the <code>re.DOTALL</code> flag. </p>
+<p>Let us try it using the <code>re.search</code> method:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-30--__tabbed_1_1" name="exec-30--__tabbed_1" type="radio" /><input id="exec-30--__tabbed_1_2" name="exec-30--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-30--__tabbed_1_1">Source</label><label for="exec-30--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Define the pattern </span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\n\n\{\{Bedeutungen\}\}\n(.+?)\n\n&#39;</span>
+
+<span class="c1"># Get your text (convert Wikicode to string)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">wordforms_DE</span><span class="p">)</span>  
+
+<span class="c1"># Perform the search</span>
+<span class="n">search</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span>
+
+<span class="c1"># Extract the content from the capturing group</span>
+<span class="n">bedeutungen_text</span> <span class="o">=</span> <span class="n">search</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Print some characters of the text</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bedeutungen_text</span><span class="p">[:</span><span class="mi">300</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">:[1] mit [[Kraft]] [[ausgestattet]], von Kraft [[prägen|geprägt]], [[zeugen]]d</span>
+<span class="go">:[2] [[hoch|hohe]] [[Leistung]] [[erbringen]]d; sehr [[leistungsfähig]]</span>
+<span class="go">:[3] [[äußer-|äußeren]] [[Einfluss|Einflüssen]], [[Belastung]]en [[standhalten]]d (aufgrund von [[Größe]], [[Dicke]] oder Ähnlichem)</span>
+<span class="go">:[4] {{K|als [[V</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>We have obtained the content of <code>Bedeutungen</code>, but it is difficult to read because it contains many Wiki links <code>[[link]]</code> and indentation syntax <code>:</code>.</p>
+<p>To improve readability, we can use the <code>strip_code</code> method from <code>mwparserfromhell</code> to convert the Wikicode into plain text.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-31--__tabbed_1_1" name="exec-31--__tabbed_1" type="radio" /><input id="exec-31--__tabbed_1_2" name="exec-31--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-31--__tabbed_1_1">Source</label><label for="exec-31--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Parse the found text into Wikicode</span>
+<span class="n">bedeutungen</span> <span class="o">=</span> <span class="n">mwparserfromhell</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">bedeutungen_text</span><span class="p">)</span>
+
+<span class="c1"># Strip Wiki links, templates, and any special Wiki code</span>
+<span class="n">bedeutungen_plain</span> <span class="o">=</span> <span class="n">bedeutungen</span><span class="o">.</span><span class="n">strip_code</span><span class="p">()</span>
+
+<span class="c1"># Print the start of the text </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bedeutungen_plain</span><span class="p">[:</span><span class="mi">300</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">[1] mit Kraft ausgestattet, von Kraft geprägt, zeugend</span>
+<span class="go">[2] hohe Leistung erbringend; sehr leistungsfähig</span>
+<span class="go">[3] äußeren Einflüssen, Belastungen standhaltend (aufgrund von Größe, Dicke oder Ähnlichem)</span>
+<span class="go">[4]  sehr, in hohem Maße; intensiv</span>
+<span class="go">[5] reich an bestimmten Stoffen, Inhalt</span>
+<span class="go">[6] von Macht, Einfluss gepr</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Finally, we will wrap this code into a function, allowing us to parse any content type by providing the content's <code>name</code>. We will also include an option to retrieve plain text when the <code>strip_code</code> option is set to <code>True</code>.</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">content_extract</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">strip_code</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># Adjust the pattern to accept the content name</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\n\n\{\{&#39;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;\}\}\n(.+?)\n\n&#39;</span>
+    <span class="n">search</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">search</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Return plain text if strip_code is True</span>
+    <span class="k">if</span> <span class="n">strip_code</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">mwparserfromhell</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">strip_code</span><span class="p">()</span>
+    <span class="c1"># Return raw wikitext if strip_code is False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">content</span>
+</code></pre></div></td></tr></table></div>
+<p>Let us try it using the content types: 'Bedeutungen', 'Beispiele', 'Synonyme', 'Sprichwörter' and print the first 150 characters of each content.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="exec-33--__tabbed_1_1" name="exec-33--__tabbed_1" type="radio" /><input id="exec-33--__tabbed_1_2" name="exec-33--__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="exec-33--__tabbed_1_1">Source</label><label for="exec-33--__tabbed_1_2">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Get your text (convert Wikicode to string)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">wordforms_DE</span><span class="p">)</span> 
+
+<span class="c1"># Get different content types</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Bedeutungen&#39;</span><span class="p">,</span> <span class="s1">&#39;Beispiele&#39;</span><span class="p">,</span> <span class="s1">&#39;Synonyme&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprichwörter&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">))</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">content_extract</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">[:</span><span class="mi">150</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-pycon highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python Console Session</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">----Bedeutungen-----</span>
+<span class="go">[1] mit Kraft ausgestattet, von Kraft geprägt, zeugend</span>
+<span class="go">[2] hohe Leistung erbringend; sehr leistungsfähig</span>
+<span class="go">[3] äußeren Einflüssen, Belastungen standhalt </span>
+
+<span class="go">-----Beispiele------</span>
+<span class="go">[1] Er hat viele Muskeln – er ist stark.</span>
+<span class="go">[1] Es weht ein starker Wind.</span>
+<span class="go">[1] Ein starker Mann kann schwere Sachen tragen.</span>
+<span class="go">[1] „Indiz für den verbreitete </span>
+
+<span class="go">------Synonyme------</span>
+<span class="go">[1] kräftig, kraftvoll</span>
+<span class="go">[2] effizient, leistungsfähig, leistungsstark, wirksam</span>
+<span class="go">[3] belastbar, dick, fest, robust, stabil, widerstandsfähig</span>
+<span class="go">[4] ausgeprä </span>
+
+<span class="go">----Sprichwörter----</span>
+<span class="go">Was dich nicht umbringt, macht dich stärker</span>
+<span class="go">Der Starke ist am mächtigsten allein.Friedrich Schiller: Wilhelm Tell (1804) </span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>What a fitting proverb (<em>Sprichwort</em>) to conclude this tutorial—it was not planned at all!  </p>
+<blockquote>
+<p><em>Was dich nicht umbringt, macht dich stärker</em>  </p>
+</blockquote>
+<p>A reminder that:  </p>
+<blockquote>
+<p><em>What does not kill you makes you stronger.</em>  </p>
+</blockquote>
+<p>We have now reached the end of this hands-on guide!  </p>
+<p>You can use this code to create your own <strong>DerDieDas</strong> game or to perform linguistic analyses.  </p>
+<p>If you are interested, feel free to explore the <a href="https://github.com/lennon-c/de_wiktio"><code>de_wiktio</code></a> project, which implements all the steps covered in this tutorial in one package.  </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../Wiki%20Basics/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Wiki Basics">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Wiki Basics
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../pycon_at/" class="md-footer__link md-footer__link--next" aria-label="Next: Workshop">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Workshop
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/lennon-c" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.tabs.link", "navigation.tabs.sticky", "navigation.footer", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      
+        <script src="../../js/open_in_new_tab.js"></script>
+      
+    
+  </body>
+</html>

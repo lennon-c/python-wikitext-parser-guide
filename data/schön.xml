@@ -1,0 +1,314 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.11/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.11/ http://www.mediawiki.org/xml/export-0.11.xsd" version="0.11" xml:lang="de">
+  <siteinfo>
+    <sitename>Wiktionary</sitename>
+    <dbname>dewiktionary</dbname>
+    <base>https://de.wiktionary.org/wiki/Wiktionary:Hauptseite</base>
+    <generator>MediaWiki 1.44.0-wmf.1</generator>
+    <case>case-sensitive</case>
+    <namespaces>
+      <namespace key="-2" case="case-sensitive">Medium</namespace>
+      <namespace key="-1" case="first-letter">Spezial</namespace>
+      <namespace key="0" case="case-sensitive" />
+      <namespace key="1" case="case-sensitive">Diskussion</namespace>
+      <namespace key="2" case="first-letter">Benutzer</namespace>
+      <namespace key="3" case="first-letter">Benutzer Diskussion</namespace>
+      <namespace key="4" case="case-sensitive">Wiktionary</namespace>
+      <namespace key="5" case="case-sensitive">Wiktionary Diskussion</namespace>
+      <namespace key="6" case="case-sensitive">Datei</namespace>
+      <namespace key="7" case="case-sensitive">Datei Diskussion</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki Diskussion</namespace>
+      <namespace key="10" case="case-sensitive">Vorlage</namespace>
+      <namespace key="11" case="case-sensitive">Vorlage Diskussion</namespace>
+      <namespace key="12" case="case-sensitive">Hilfe</namespace>
+      <namespace key="13" case="case-sensitive">Hilfe Diskussion</namespace>
+      <namespace key="14" case="case-sensitive">Kategorie</namespace>
+      <namespace key="15" case="case-sensitive">Kategorie Diskussion</namespace>
+      <namespace key="102" case="case-sensitive">Verzeichnis</namespace>
+      <namespace key="103" case="case-sensitive">Verzeichnis Diskussion</namespace>
+      <namespace key="104" case="case-sensitive">Thesaurus</namespace>
+      <namespace key="105" case="case-sensitive">Thesaurus Diskussion</namespace>
+      <namespace key="106" case="case-sensitive">Reim</namespace>
+      <namespace key="107" case="case-sensitive">Reim Diskussion</namespace>
+      <namespace key="108" case="case-sensitive">Flexion</namespace>
+      <namespace key="109" case="case-sensitive">Flexion Diskussion</namespace>
+      <namespace key="110" case="case-sensitive">Rekonstruktion</namespace>
+      <namespace key="111" case="case-sensitive">Rekonstruktion Diskussion</namespace>
+      <namespace key="710" case="case-sensitive">TimedText</namespace>
+      <namespace key="711" case="case-sensitive">TimedText talk</namespace>
+      <namespace key="828" case="case-sensitive">Modul</namespace>
+      <namespace key="829" case="case-sensitive">Modul Diskussion</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>schön</title>
+    <ns>0</ns>
+    <id>2930</id>
+    <revision>
+      <id>9906353</id>
+      <parentid>9847170</parentid>
+      <timestamp>2023-11-14T17:08:59Z</timestamp>
+      <contributor>
+        <username>S. Sadi Işıklılar</username>
+        <id>221820</id>
+      </contributor>
+      <comment>+tr:[[hoş]] +tr:[[bir hayli]] +tr:[[bir güzel]] +tr:[[ala]] ([[Hilfe:Einfügen-Erweiterung|Assisted]])</comment>
+      <origin>9906353</origin>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text bytes="11501" sha1="89wpfv885js5rx4kt4cynedqjzpys3v" xml:space="preserve">{{Siehe auch|[[schon]]}}
+{{Wort der Woche|26|2007}}
+== schön ({{Sprache|Deutsch}}) ==
+=== {{Wortart|Adjektiv|Deutsch}} ===
+
+{{Deutsch Adjektiv Übersicht
+|Positiv=schön
+|Komparativ=schöner
+|Superlativ=schönsten
+|Bild 1=Jaguar E-type (serie III).jpg|mini|1|ein ''schönes'' [[Auto]]
+|Bild 2=12er Anitra US5 Kiel2009.jpg|mini|1|eine ''schöne'' [[Yacht]]
+|Bild 3=Gedeon Burkhard Berlinale 2008.jpg|mini|1|ein ''schöner'' [[Mann]]
+}}
+
+{{Worttrennung}}
+:schön, {{Komp.}} schö·ner, {{Sup.}} am schöns·ten
+
+{{Aussprache}}
+:{{IPA}} {{Lautschrift|ʃøːn}}
+:{{Hörbeispiele}} {{Audio|De-schön.ogg}}, {{Audio|De-schön fcm.ogg}}, {{Audio|De-schön2.ogg}}, {{Audio|De-at-schön.ogg|spr=at}}
+:{{Reime}} {{Reim|øːn|Deutsch}}
+
+{{Bedeutungen}}
+:[1] ästhetisch, eine angenehme Wirkung auf die Sinne habend: zum Beispiel ein gutes Aussehen habend, sich gut anhörend
+:[2] {{K|allgemein}} angenehm, gut, anständig
+:[3] {{K|umgangssprachlich}} verstärkend im Sinne von [[beträchtlich]]
+:[4] {{K|umgangssprachlich}} zustimmende Antwort auf eine Frage
+:[5] {{K|umgangssprachlich}} so, wie es sich gehört
+:[6] in festen Wendungen mit verschwommener Bedeutung [1, 2]
+
+{{Herkunft}}
+:{{goh.}} ''scōni'' „ansehnlich, glänzend, rein, herrlich“, {{gmh.}} ''schœn, schœne'' auch „schonend, freundlich“, {{mlg.}} ''schön, schöne'', {{dum.}} ''scōne''&lt;ref&gt;{{Lit-Pfeifer: Etymologisches Wörterbuch|A=6}}, Seite 1236.&lt;/ref&gt;
+
+{{Synonyme}}
+:[1] [[ansprechend]], [[anziehend]], [[ästhetisch]], [[attraktiv]], [[hübsch]], [[dekorativ]]
+:[2] [[angenehm]], [[gut]]
+:[3] [[besonders]], [[beträchtlich]], [[sehr]], [[überaus]]
+:[4] [[einverstanden]], [[okay]]
+:[5] [[ordnungsgemäß]]
+
+{{Gegenwörter}}
+:[1] [[hässlich]], [[unschön]]
+:[2] [[schlecht]], [[unangenehm]]
+:[3] [[nicht]]
+:[4] [[nein]]
+:[5] {{österr.|:}} [[schirch]]
+
+{{Unterbegriffe}}
+:[1] [[formschön]]
+:[1, 2] [[wunderschön]]
+
+{{Beispiele}}
+:[1] Sie hat ''schönes'' Haar. Das Musikstück ist ''schön.''
+:[1] Sie sang ''schön,'' ''schöner'' als gewöhnlich, weil die Instrumentalisten ihr so vertraut waren. Am ''schönsten'' sang sie, als Viktor am Klavier saß.
+:[1] „Nik Wallenda, Urenkel eines deutschen Zirkusakrobaten, hat als erster Mensch die Niagarafälle an ihrer ''schönsten'' und gefährlichsten Stelle überquert.“&lt;ref&gt;{{Per-Zeit Online|Online=https://www.zeit.de/zustimmung?url=https%3A%2F%2Fwww.zeit.de%2Fgesellschaft%2Fzeitgeschehen%2F2012-06%2Fakrobat-niagarafaelle-balance |Autor=Zeit Online |Titel= Zu Fuß übers große Wasser |Tag=16 |Monat= 06|Jahr= 2012|zugriff=2020-04-03}}&lt;/ref&gt;
+:[1, 2] Sille ist ''schön.''
+:[1, 2] „Die Herzen bebten über die Kühnheit des jungen, ''schönen'', wagemutigen Paares.“&lt;ref&gt;{{Literatur | Autor= Karl May| Titel= Winnetou IV | Verlag= Neues Leben | Ort= Berlin | Jahr= 1993 [1910] }}, Seite 429.&lt;/ref&gt;
+:[2] Das hat er aber ''schön'' gemacht. Wir hatten ''schöne'' Ferientage. Es wäre ''schön,'' wenn wir uns wieder treffen. Es war ''schön'' von ihm, seiner Frau Blumen zu schenken.
+:[2] Das ist ja eine ''schöne'' Geschichte! Oder anders gesagt: Das ist aber wirklich schlimm!
+:[2] Du bist mir ja ein ''schöner'' Freund! Oder anders gesagt: Du bist wahrlich ein schlechter Freund!
+:[3] Da wird sie ganz ''schön'' staunen. Also, da wird sie aber überrascht sein.
+:[3] Das wird eine ''schöne'' Stange Geld kosten. Also, das wird wohl ziemlich teuer werden.
+:[4] Lass uns doch mal wieder im Kino einen Film ansehen! – ''Schön,'' dann komm!
+:[5] So, jetzt gehen wir ''schön'' ins Bett.
+:[5] ''Schön'' aufpassen, wenn du über die Straße gehst!
+
+{{Redewendungen}}
+:[[das schöne Geschlecht|das ''schöne'' Geschlecht]] – die Frauen in ihrer Gesamtheit
+:[[die schönen Künste|die ''schönen'' Künste]] – Dichtung, Musik, Malerei, Bildhauerei
+:[[eine schöne Leich]] – …
+:[[jemandem schöne Augen machen|jemandem ''schöne'' Augen machen]]
+:[[schöne Worte machen|''schöne'' Worte machen]] – schmeicheln
+:[[das ist zu schön, um wahr zu sein|Das ist zu ''schön'', um wahr zu sein]] – …
+:[[wie es so schön heißt|wie es so ''schön'' heißt]] – …
+:[[immer schön der Reihe nach|immer ''schön'' der Reihe nach]] – …
+:[[schön ist, was gefällt|''Schön'' ist, was gefällt]]. – …
+:[[schön und gut|''schön'' und gut]] – Zustimmung zu einem Argument, gefolgt von „Aber …“
+
+{{Sprichwörter}}
+:[1] [[aus einem schönen Morgen wird selten ein schöner Tag, aus einem schönen Mädchen wird meistens ein Schlumpersack|Aus einem ''schönen'' Morgen wird selten ein ''schöner'' Tag, aus einem ''schönen'' Mädchen wird meistens ein Schlumpersack]].
+
+{{Charakteristische Wortkombinationen}}
+:[1] ''schöne'' [[Auge]]n, ''schöne'' [[Bescherung]], ''schöne'' [[Tag]]e, ''schönes'' [[Wetter]], [[traumhaft]] ''schön'', [[atemberaubend]] ''schön''
+:[3] ganz ''schön'' [[frech]], [[bitte]] ''schön'', [[danke]] ''schön'', [[recht]] ''schönen'' [[Dank]], ''schöne'' [[Gruß|Grüße]] [[ausrichten]]
+
+{{Wortbildungen}}
+:[[beschönigen]], [[bildschön]], [[Bitteschön]], [[Dankeschön]], [[formschön]], [[schönen]], [[schönfärben]], [[Schöngeist]], [[Schönheit]], [[Schönling]], [[schönmachen]], [[schönreden]], [[schönrechnen]], [[schönschreiben]], [[schöntun]], [[Schönwetter]], [[Tausendschön]], [[unschön]], [[wunderschön]], [[verschönern]]
+
+==== {{Übersetzungen}} ====
+{{Ü-Tabelle|1|G=ästhetisch, eine angenehme Wirkung auf die Sinne habend|Ü-Liste=
+*{{ar|DMG}}:
+**{{MHA}}: {{Üxx4|ar|جميل|v=جَمِيل|d=ǧamīl|DMG=0}}
+*{{bg}}: {{Üt|bg|красив|krasiv}}, {{Üt|bg|хубав|chubav}}
+*{{zh}}: {{Üt|zh|美|měi}}
+*{{en}}: {{Ü|en|beautiful}}, {{Ü|en|nice}}
+*{{eo}}: {{Ü|eo|bela}}
+*{{et}}: {{Ü|et|ilus}}
+*{{fi}}: {{Ü|fi|kaunis}}, {{Ü?|fi|ihan törkeän sikakaunis}}, {{Ü?|fi|nätti}}, {{Ü?|fi|sikakaunis}}, {{Ü?|fi|kaunis kauniimpi kaunein kaikesta kaunein}} ''pl''
+*{{fr}}: {{Ü|fr|beau}} ''Adjektiv'', {{Ü|fr|bien}} ''Adverb''
+*{{gl}}: {{Ü|gl|belo}}, {{Ü|gl|bonito}}
+*{{ka}}: {{Üt|ka|ლამაზი|lamasi}}, {{Üt|ka|მშვენიერი|mschwenieri}}
+*{{el}}: {{Üt|el|ωραίος|oraíos}}, {{Üt|el|όμορφος|ómorfos}}
+*{{io}}: {{Ü|io|bela}}
+*{{id}}: {{Ü|id|bagus}}, {{Ü|id|cantik}}
+*{{ia}}: {{Ü|ia|belle}}
+*{{it}}: {{Ü|it|bello}}
+*{{ja}}: {{Üt|ja|美しい|うつくしい, utsukushii}}, {{Üt|ja|綺麗|きれい, kirei}}
+*{{ca}}: ''Adjektiv:'' {{Ü|ca|bell}}, {{Ü|ca|bonic}}, ''Adverb:'' {{Ü|ca|bé}}, {{Ü|ca|ben}}
+*{{tlh}}: {{Ü|tlh|’IH}}
+*{{ko}}: {{Üt|ko|아름답다|}}, {{Üt|ko|예쁘다|}}
+*{{hr}}: {{Ü|hr|lijep}} {{m}}
+*{{ku}}:
+**{{kmr}}: {{Ü|kmr|rind}}
+*{{la}}: {{Ü|la|pulcher}}, {{Ü|la|bellus}}
+*{{lb}}: {{Ü|lb|schéin}}
+*{{nl}}: {{Ü|nl|mooi}}
+*{{no}}:
+**{{nb}}: {{Ü|nb|pen}}, {{Ü|nb|vakker}}, {{Ü|nb|skjønn}}, {{Ü|nb|fager}}
+**{{nn}}: {{Ü|nn|fager}}, {{Ü|nn|pen}}, {{Ü|nn|vakker}}, {{Ü|nn|skjønn}}
+*{{oc}}: {{Ü|oc|bèl}} {{Ü|oc|bèl|bèla}}, {{Ü|oc|bèth}} {{Ü|oc|bèra|bèla}} ([[aranesisch]]), {{Ü|oc|polit}} {{Ü|oc|polida}}
+*{{fa}}: {{Üt|fa|قشنگ|ɢæʃæng}}, {{Üt|fa|زيبا|zibɑ}}, {{Üt|fa|خوشگل|χoʃgɛl}}
+*{{pl}}: {{Ü|pl|ładny}}, {{Ü|pl|piękny}}
+*{{pt}}: {{Ü|pt|belo}}, {{Ü|pt|lindo}}, {{Ü|pt|bonito}}, {{Ü|pt|bacana}} {{m}} {{f}}
+*{{ro}}: {{Ü|ro|frumos}}
+*{{ru}}: {{Üt|ru|красивый}}, {{Üt|ru|приятный}}
+*{{sc}}: {{Ü|sc|bellu}}
+*{{sv}}: {{Ü|sv|skön}}, {{Ü|sv|vacker}}
+*{{sl}}: {{Ü|sl|lep}}
+*{{wen}}:
+**{{dsb}}: {{Ü|dsb|rědny}}
+*{{es}}: {{Ü|es|bello}}, {{Ü|es|lindo}}
+*{{sw}}: {{Ü|sw|zuri}}
+*{{cs}}: {{Ü|cs|krásný}}, {{Ü|cs|hezký}}
+*{{tr}}: {{Ü|tr|güzel}}
+*{{uk}}: {{Üt|uk|гарний|harnyj}}, {{Üt|uk|приємний|pryjemnyj}}
+*{{hu}}: {{Ü|hu|szép}}, {{Ü|hu|csinos}}
+*{{vi}}: {{Ü|vi|đẹp}}
+*{{vo}}: {{Ü|vo|jönik}}
+|Dialekttabelle=
+*Mitteldeutsch:
+**Pfälzisch: schee, schää(n) {{Lautschrift|ʃɛː / ʃɛ̃ː}}
+**Hessisch: schee &lt;ref&gt;http://www.hessenweb.de/?id=467&lt;/ref&gt;
+*Oberdeutsch:
+**{{bar}}: schee
+**Ostfränkisch: schee
+}}
+
+{{Ü-Tabelle|2|G=allgemein: angenehm, gut, anständig|Ü-Liste=
+*{{bg}}: {{Üt|bg|красив|krasiv}}, {{Üt|bg|хубав|chubav}}
+*{{ka}}: {{Üt|ka|ლამაზი|lamasi}}, {{Üt|ka|მშვენიერი|mschwenieri}}
+*{{ca}}: ''Adjektiv:'' {{Ü|ca|bell}}, {{Ü|ca|bonic}}, ''Adverb:'' {{Ü|ca|bé}}, {{Ü|ca|ben}}
+*{{ko}}: {{Üt|ko|좋다|}}
+*{{la}}: {{Ü|la|bellus}}
+*{{lb}}: {{Ü|lb|schéin}}
+*{{nl}}: {{Ü|nl|leuk}}
+*{{fa}}: {{Üt|fa|دلچسب|dɛlt͡ʃæsb}}
+*{{pt}}: {{Ü|pt|bacana}} {{m}} {{f}}, {{Ü|pt|bom}}
+*{{es}}: {{Ü|es|agradable}}, {{Ü|es|bueno}}
+*{{tr}}: {{Ü|tr|hoş}}
+*{{hu}}: {{Ü|hu|szép}}, {{Ü|hu|csinos}}
+|Dialekttabelle=
+*Mitteldeutsch:
+**Pfälzisch: schee, schää(n) {{Lautschrift|ʃɛː / ʃɛ̃ː}}
+**Hessisch: schee &lt;ref&gt;http://www.hessenweb.de/?id=467&lt;/ref&gt;
+*Oberdeutsch:
+**{{bar}}: schee
+**Ostfränkisch: schee
+}}
+
+{{Ü-Tabelle|3|G=umgangssprachlich: verstärkend im Sinne von beträchtlich|Ü-Liste=
+*{{lb}}: {{Ü|lb|schéin}}
+*{{fa}}: {{Üt|fa|حسابی|hɛsɑbi}}, {{Üt|fa|درست و حسابی|doɾost o hɛsɑbi}}
+*{{tr}}: {{Ü|tr|bir hayli}}, {{Ü|tr|bir güzel}}
+*{{hu}}: {{Ü|hu|szép}}
+|Dialekttabelle=
+*Mitteldeutsch:
+**Pfälzisch: schee, schää(n) {{Lautschrift|ʃɛː / ʃɛ̃ː}}
+**Hessisch: schee &lt;ref&gt;http://www.hessenweb.de/?id=467&lt;/ref&gt;
+*Oberdeutsch:
+**{{bar}}: schee
+**Ostfränkisch: schee
+}}
+
+{{Ü-Tabelle|4|G=umgangssprachlich: zustimmende Antwort auf eine Frage|Ü-Liste=
+*{{eo}}: {{Ü|eo|bone}}
+*{{ka}}: {{Üt|ka|მშვენიერი|mschwenieri}}, {{Üt|ka|კარგი|k'argi}}
+*{{hu}}: {{Ü|hu|szép}}
+|Dialekttabelle=
+*Mitteldeutsch:
+**Pfälzisch: schee, schää(n) {{Lautschrift|ʃɛː / ʃɛ̃ː}}
+**Hessisch: schee &lt;ref&gt;http://www.hessenweb.de/?id=467&lt;/ref&gt;
+*Oberdeutsch:
+**{{bar}}: schee
+**Ostfränkisch: schee
+}}
+
+{{Ü-Tabelle|5|G=umgangssprachlich: so, wie es sich gehört|Ü-Liste=
+*{{eo}}: {{Ü|eo|taŭge}}, {{Ü|eo|ende}}
+*{{tr}}: {{Ü|tr|ala|alâ}}
+*{{hu}}: {{Ü|hu|szép}}, {{Ü|hu|csinos}}
+|Dialekttabelle=
+*Mitteldeutsch:
+**Pfälzisch: schee, schää(n) {{Lautschrift|ʃɛː / ʃɛ̃ː}}
+**Hessisch: schee &lt;ref&gt;http://www.hessenweb.de/?id=467&lt;/ref&gt;
+*Oberdeutsch:
+**{{bar}}: schee
+**Ostfränkisch: schee
+}}
+
+{{Ü-Tabelle|6|G=in festen Wendungen mit verschwommener Bedeutung [1, 2]|Ü-Liste=
+*{{hu}}: {{Ü|hu|szép}}, {{Ü|hu|csinos}}
+|Dialekttabelle=
+*Mitteldeutsch:
+**Pfälzisch: schee, schää(n) {{Lautschrift|ʃɛː / ʃɛ̃ː}}
+**Hessisch: schee &lt;ref&gt;http://www.hessenweb.de/?id=467&lt;/ref&gt;
+*Oberdeutsch:
+**{{bar}}: schee
+**Ostfränkisch: schee
+}}
+
+{{Referenzen}}
+:[1–6] {{Ref-Duden|schön}}
+:[1–6] {{Ref-DWDS|schön}}
+:[1–3, 6] {{Ref-FreeDictionary|schön}}
+:[(1, 2)] {{Ref-UniLeipzig|schön}}
+:[1?] {{Ref-Grimm|schön}}
+:[*] {{Wikipedia|schön}}
+{{Referenzen prüfen|Deutsch}}
+
+{{Quellen}}
+
+=== {{Wortart|Konjugierte Form|Deutsch}} ===
+
+{{Nebenformen}}
+:''2. Person Singular Imperativ Präsens Aktiv:'' [[schöne]]
+:''1. Person Singular Indikativ Präsens Aktiv:'' [[schöne]]
+
+{{Worttrennung}}
+:schön
+
+{{Aussprache}}
+:{{IPA}} {{Lautschrift|ʃøːn}}
+:{{Hörbeispiele}} {{Audio|De-schön.ogg}}, {{Audio|De-schön fcm.ogg}}, {{Audio|De-schön2.ogg}}, {{Audio|De-at-schön.ogg|spr=at}}
+:{{Reime}} {{Reim|øːn|Deutsch}}
+
+{{Grammatische Merkmale}}
+* 2. Person Singular Imperativ Präsens Aktiv des Verbs '''[[schönen]]'''
+* 1. Person Singular Indikativ Präsens Aktiv des Verbs '''[[schönen]]'''
+
+{{Grundformverweis Konj|schönen}}
+
+{{Ähnlichkeiten 1|[[Föhn]], [[Schein]]}}</text>
+      <sha1>89wpfv885js5rx4kt4cynedqjzpys3v</sha1>
+    </revision>
+  </page>
+</mediawiki>
