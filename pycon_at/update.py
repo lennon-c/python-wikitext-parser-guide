@@ -36,7 +36,7 @@ if __name__ == "__main__":
     render_workshop()
     create_index_md()
 
-    update_notebooks()
+    update_notebooks(commit_msg = "Update pycon_at - fixing 403 error")
     update_workshop_index()
 
 

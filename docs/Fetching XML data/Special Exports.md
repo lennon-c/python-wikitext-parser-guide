@@ -43,9 +43,14 @@ To programmatically fetch and download XML content, you can use Python's `reques
 def fetch(title):
     # Construct the URL for the XML export of the given page title
     url = f'https://de.wiktionary.org/wiki/Spezial:Exportieren/{title}'
-    
+
+    # Set User-Agent header
+    headers = {
+        "User-Agent": "Search for German words (https://lennon-c.github.io/python-wikitext-parser-guide)"
+    }
+
     # Send a GET request
-    resp = requests.get(url)
+    resp = requests.get(url, headers=headers)
     
     # Check if the request was successful, and raise an error if not
     resp.raise_for_status()

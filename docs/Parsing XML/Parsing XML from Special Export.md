@@ -11,7 +11,10 @@ We will use the `fetch` function as described in our earlier tutorial on Special
 ```python exec="true" source="above"   session="requests" 
 def fetch(title):
     url = f'https://de.wiktionary.org/wiki/Spezial:Exportieren/{title}'
-    resp = requests.get(url)
+    headers = {
+        "User-Agent": "Search for German words (https://lennon-c.github.io/python-wikitext-parser-guide)"
+    }
+    resp = requests.get(url, headers=headers)
     resp.raise_for_status()
     return resp.text
 ```
@@ -258,7 +261,10 @@ import lxml.etree as ET
 
 def fetch(title):
     url = f'https://de.wiktionary.org/wiki/Spezial:Exportieren/{title}'
-    resp = requests.get(url)
+    headers = {
+        "User-Agent": "Search for German words (https://lennon-c.github.io/python-wikitext-parser-guide)"
+    }
+    resp = requests.get(url, headers=headers)
     resp.raise_for_status()
     return resp.text
 
